@@ -9,11 +9,13 @@
     <link rel="icon" type="image/png" sizes="32x32" href="img/ajulo-mark.png">
     <link rel="apple-touch-icon" href="img/ajulo-mark.png">
 
-    <!-- Google Fonts (Replaces broken Fontsource links) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700;800&family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/fraunces@latest/latin-700-normal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/fraunces@latest/latin-900-normal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/lora@latest/latin-400-normal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/lora@latest/latin-600-normal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/archivo@latest/latin-400-normal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/archivo@latest/latin-700-normal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/archivo@latest/latin-800-normal.css">
     <link rel="stylesheet" href="styles.css">
 
     <!-- SEO SCHEMA: ORGANIZATION -->
@@ -25,7 +27,10 @@
       "url": "https://ajulowebsolutions.com",
       "logo": "https://ajulowebsolutions.com/img/ajulo-web-solutions.png",
       "description": "We build fast, mobile-first websites and quote systems for UK trades.",
-      "areaServed": { "@type": "Country", "name": "United Kingdom" },
+      "areaServed": {
+        "@type": "Country",
+        "name": "United Kingdom"
+      },
       "priceRange": "£150 - £1000"
     }
     </script>
@@ -39,17 +44,26 @@
         {
           "@type": "Question",
           "name": "Does the one-page site include a quote form?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Every build includes a working quote/contact form that notifies you instantly, plus click-to-call." }
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Every build — including the one-page Quote Starter — includes a working quote/contact form that notifies you the moment a customer submits it, plus click-to-call."
+          }
         },
         {
           "@type": "Question",
           "name": "Do you guarantee Google rankings?",
-          "acceptedAnswer": { "@type": "Answer", "text": "No. We improve your visibility and enquiry setup, but rankings depend on competition, reviews, content, and time." }
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. We improve your visibility and enquiry setup, but rankings depend on competition, reviews, content, and time."
+          }
         },
         {
           "@type": "Question",
           "name": "How fast can you deliver?",
-          "acceptedAnswer": { "@type": "Answer", "text": "First draft often within 48 hours after content is received. Full launch usually within a few days." }
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "First draft often within 48 hours after content is received. Full launch usually within a few days depending on scope."
+          }
         }
       ]
     }
@@ -65,7 +79,7 @@
     <nav class="site-nav">
         <div class="container nav-inner">
             <a class="logo" href="#top" aria-label="Ajulo Web Solutions — home">
-                <img src="img/ajulo-web-solutions.png" alt="Ajulo Web Solutions" class="logo-img" width="400" height="70">
+                <img src="img/ajulo-web-solutions.png" alt="Ajulo Web Solutions" class="logo-img">
             </a>
             <button class="menu-toggle" aria-expanded="false" aria-controls="nav-menu">Menu</button>
             <div class="nav-links" id="nav-menu">
@@ -172,8 +186,7 @@
                         <div class="browser-frame">
                             <div class="browser-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><div class="url-bar"> joelremovals.co.uk</div></div>
                             <div class="case-screen">
-                                <!-- LAZY LOADED IFRAME TO FIX PAGE SPEED -->
-                                <iframe class="lazy-iframe" data-src="https://joelremovals.co.uk" title="Live Joel Removals website" loading="lazy" referrerpolicy="no-referrer"></iframe>
+                                <iframe src="https://joelremovals.co.uk" title="Live Joel Removals website" loading="lazy" referrerpolicy="no-referrer"></iframe>
                             </div>
                         </div>
                     </div>
@@ -377,23 +390,23 @@
                     <p class="lead">Practical, no-fluff advice on building a profitable online presence for your trade business.</p>
                 </div>
                 <div class="feature-grid">
-                    <a href="answers/how-much-does-a-website-cost-for-a-tradesman.html" class="feature-card reveal" style="text-decoration:none; color:inherit;">
+                    <a href="answers/how-much-does-a-website-cost-for-a-tradesman.html" class="feature-card reveal" style="text-decoration:none; color:inherit; border-color: var(--line); transition: border-color 0.3s;">
                         <h3 style="color: var(--gold);">How much does a website cost for a tradesman?</h3>
                         <p>A clear breakdown of trade website costs in the UK, from £150 one-pagers to £1,000+ lead generation sites.</p>
                     </a>
-                    <a href="answers/do-i-need-a-website-for-my-trade-business.html" class="feature-card reveal" style="text-decoration:none; color:inherit;">
+                    <a href="answers/do-i-need-a-website-for-my-trade-business.html" class="feature-card reveal" style="text-decoration:none; color:inherit; border-color: var(--line); transition: border-color 0.3s;">
                         <h3 style="color: var(--gold);">Do I need a website for my trade business?</h3>
                         <p>Why word-of-mouth isn't enough anymore and how a simple site builds instant trust with new customers.</p>
                     </a>
-                    <a href="answers/how-to-get-more-quote-requests-for-a-removals-business.html" class="feature-card reveal" style="text-decoration:none; color:inherit;">
+                    <a href="answers/how-to-get-more-quote-requests-for-a-removals-business.html" class="feature-card reveal" style="text-decoration:none; color:inherit; border-color: var(--line); transition: border-color 0.3s;">
                         <h3 style="color: var(--gold);">How to get more quote requests (Removals)</h3>
                         <p>Practical steps to increase online enquiries, including mobile optimisation and trust signals.</p>
                     </a>
-                    <a href="answers/why-is-my-trade-website-not-getting-enquiries.html" class="feature-card reveal" style="text-decoration:none; color:inherit;">
+                    <a href="answers/why-is-my-trade-website-not-getting-enquiries.html" class="feature-card reveal" style="text-decoration:none; color:inherit; border-color: var(--line); transition: border-color 0.3s;">
                         <h3 style="color: var(--gold);">Why is my trade website not getting enquiries?</h3>
                         <p>Discover the 3 most common reasons your site is losing customers and how to fix them today.</p>
                     </a>
-                    <a href="answers/google-business-profile-for-trades.html" class="feature-card reveal" style="text-decoration:none; color:inherit;">
+                    <a href="answers/google-business-profile-for-trades.html" class="feature-card reveal" style="text-decoration:none; color:inherit; border-color: var(--line); transition: border-color 0.3s;">
                         <h3 style="color: var(--gold);">How to optimise your Google Business Profile</h3>
                         <p>A step-by-step guide to getting more local calls and dominating the map pack in your area.</p>
                     </a>
@@ -444,9 +457,9 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <img src="img/ajulo-web-solutions.png" alt="Ajulo Web Solutions" class="footer-logo" width="400" height="70">
+                    <img src="img/ajulo-web-solutions.png" alt="Ajulo Web Solutions" class="footer-logo">
                     <p>UK-focused web studio building quote-generating websites for trades.</p>
-                    <div class="venture-line"><img src="img/ajulo-umbrella.png" alt="AJULO" class="venture-mark" width="100" height="100"> Ajulo Web Solutions is an AJULO venture.</div>
+                    <div class="venture-line"><img src="img/ajulo-umbrella.png" alt="AJULO" class="venture-mark"> Ajulo Web Solutions is an AJULO venture.</div>
                 </div>
                 <div class="footer-links">
                     <a href="#proof">Proof</a>
@@ -465,4 +478,20 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <div>© <span id="year"></span> Ajulo Web Solutions. All rights reserved. Templates and code remain the property of Ajulo
+                <div>© <span id="year"></span> Ajulo Web Solutions. All rights reserved. Templates and code remain the property of Ajulo Web Solutions.</div>
+                <div>UK-focused. Serving UK trades remotely.</div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="cookie-bar" id="cookieBar" hidden>
+        <p>We use essential cookies only. Embedded video loads only when you click it. <a href="cookies.html">Cookie Policy</a></p>
+        <div class="cookie-actions">
+            <button class="btn btn-primary btn-small" data-cookie-choice="yes">Accept</button>
+            <button class="btn btn-secondary btn-small" data-cookie-choice="essential">Essential only</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
