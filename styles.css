@@ -303,4 +303,45 @@ footer{border-top:1px solid var(--line);padding:3rem 0;background:rgba(255,255,2
     height: auto !important;
     display: block !important;
     max-width: 100%;
+}/* ── OVERRIDE ALL PREVIOUS CASE STUDY STYLES ── */
+.case-screen {
+    height: 600px !important;
+    max-height: 600px !important;
+    overflow-y: scroll !important;
+    overflow-x: hidden !important;
+    background: #fff;
+    border-radius: 0 0 16px 16px;
+    position: relative;
+    display: block;
+}
+
+.case-screen::-webkit-scrollbar {
+    width: 12px;
+    display: block;
+}
+
+.case-screen::-webkit-scrollbar-track {
+    background: #1a1a1a;
+    border-radius: 6px;
+}
+
+.case-screen::-webkit-scrollbar-thumb {
+    background: #ff5c1f;
+    border-radius: 6px;
+    border: 3px solid #1a1a1a;
+}
+
+.case-screenshot {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    min-height: 100%;
+}
+
+@media (max-width: 760px) {
+    .case-screen {
+        height: 400px !important;
+        max-height: 400px !important;
+    }
 }
