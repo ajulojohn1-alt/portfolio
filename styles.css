@@ -37,12 +37,7 @@ p{color:#ddd}
 .logo-img{height:80px;width:auto;display:block;mix-blend-mode:lighten}
 .footer-logo{height:110px;width:auto;display:block;mix-blend-mode:lighten;margin-bottom:.6rem}
 .venture-line{display:flex;align-items:center;gap:.75rem;margin-top:1.25rem;color:var(--muted);font-size:.9rem;font-family:var(--font-ui)}
-.venture-mark{height:24px;width:auto;mix-blend-mode:lighten}
-
-/* BRAND ICON PLACEMENTS */
-.hero-mark{height:48px;width:auto;display:block;margin:0 auto 1.5rem;mix-blend-mode:lighten}
-.tag-mark{height:16px;width:auto;mix-blend-mode:lighten;flex-shrink:0}
-.panel-mark{height:32px;width:auto;mix-blend-mode:lighten;vertical-align:middle;margin-right:12px;margin-bottom:8px}
+.venture-mark{height:32px;width:auto;mix-blend-mode:lighten}
 
 .announcement{background:var(--gold);color:#161616;text-align:center;padding:.75rem 1rem;font-family:var(--font-ui);font-size:.9rem;font-weight:700}
 .announcement strong{color:#7c2d12}
@@ -92,7 +87,7 @@ p{color:#ddd}
 
 /* LIVE JOEL REMOVALS IFRAME — SCROLLABLE */
 .case-screen{
-    height:700px;
+    height:600px;
     overflow-y:scroll;
     background:#fff;
     scrollbar-width:thin;
@@ -104,13 +99,13 @@ p{color:#ddd}
 .case-screen::-webkit-scrollbar-thumb{background:var(--accent);border-radius:5px}
 .case-screen iframe{
     width:100%;
-    height:3200px;
+    height:2400px;
     border:0;
     display:block;
     background:#fff;
 }
 @media (max-width:1000px){.case-screen{height:500px}}
-@media (max-width:760px){.case-screen{height:400px}.case-screen iframe{height:2400px}}
+@media (max-width:760px){.case-screen{height:400px}.case-screen iframe{height:1800px}}
 
 .feature-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
 .feature-card p{color:var(--muted);font-size:.95rem}
@@ -220,6 +215,5 @@ footer{border-top:1px solid var(--line);padding:3rem 0;background:rgba(255,255,2
     .cookie-bar{flex-direction:column;align-items:flex-start}
     .logo-img{height:56px}
     .footer-logo{height:80px}
-    .hero-mark{height:36px}
-    .panel-mark{height:24px}
+    .venture-mark{height:24px}
 }
