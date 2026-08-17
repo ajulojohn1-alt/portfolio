@@ -2,6 +2,14 @@
 
 > We build fast, mobile-first websites and quote systems for UK trades.
 
-- Services: https://ajulowebsolutions.com/#packages
-- Case Study: https://ajulowebsolutions.com/#casestudy
+## Core Pages
+- Services & Pricing: https://ajulowebsolutions.com/#packages
+- Case Study (Joel Removals): https://ajulowebsolutions.com/#casestudy
 - Contact: https://ajulowebsolutions.com/#contact
+
+## Trade Answers (Guides)
+- How much does a website cost?: https://ajulowebsolutions.com/answers/how-much-does-a-website-cost-for-a-tradesman.html
+- Do I need a website?: https://ajulowebsolutions.com/answers/do-i-need-a-website-for-my-trade-business.html
+- How to get more quote requests: https://ajulowebsolutions.com/answers/how-to-get-more-quote-requests-for-a-removals-business.html
+- Why is my site not getting enquiries?: https://ajulowebsolutions.com/answers/why-is-my-trade-website-not-getting-enquiries.html
+- How to optimise Google Business Profile: https://ajulowebsolutions.com/answers/google-business-profile-for-trades.html

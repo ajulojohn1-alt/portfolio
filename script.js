@@ -44,7 +44,7 @@ document.querySelectorAll('[data-cookie-choice]').forEach(btn => {
     });
 });
 
-// Two-click YouTube loader (PECR-friendly: video only loads on explicit click)
+// Two-click YouTube loader
 document.querySelectorAll('.video-screen').forEach(screen => {
     const btn = screen.querySelector('.video-load');
     if (!btn) return;
@@ -58,4 +58,20 @@ document.querySelectorAll('.video-screen').forEach(screen => {
         screen.innerHTML = '';
         screen.appendChild(iframe);
     });
+});
+
+// LAZY LOAD IFRAME (Fixes PageSpeed TBT)
+document.addEventListener("DOMContentLoaded", function() {
+    const iframes = document.querySelectorAll('.lazy-iframe');
+    if (iframes.length > 0) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.src = entry.target.dataset.src;
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { rootMargin: '300px' });
+        iframes.forEach(iframe => observer.observe(iframe));
+    }
 });
