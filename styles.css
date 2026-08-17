@@ -213,4 +213,52 @@ footer{border-top:1px solid var(--line);padding:3rem 0;background:rgba(255,255,2
     .hero{padding-top:4rem}
     .marquee-item{font-size:1rem}
     .cookie-bar{flex-direction:column;align-items:flex-start}
-}
+}/* ── LOGO SIZE OVERRIDES ── */
+.logo-img{height:48px}
+.footer-logo{height:64px}
+.venture-line img{height:36px}
+@media (max-width:760px){.logo-img{height:34px}}
+
+/* ── REAL SCREENSHOT SCREEN ── */
+.case-screen{height:540px;overflow-y:auto;background:#fff;scrollbar-width:thin;scrollbar-color:var(--accent) #111}
+.case-screen::-webkit-scrollbar{width:6px}
+.case-screen::-webkit-scrollbar-thumb{background:var(--accent);border-radius:3px}
+.case-screenshot{width:100%;display:block}
+.case-screen iframe{width:100%;height:100%;border:0;display:block}
+
+/* ── ANSWERS HUB ── */
+.answers-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+.answer-card{display:block;text-decoration:none;border:1px solid var(--line);border-radius:var(--radius);background:rgba(255,255,255,.03);padding:1.3rem;transition:border-color .2s,transform .2s}
+.answer-card:hover{border-color:var(--gold);transform:translateY(-3px)}
+.answer-card h3{font-family:var(--font-display);text-transform:none;font-size:1.25rem;letter-spacing:0;color:#fff;margin-bottom:.5rem}
+.answer-card p{color:var(--muted);font-size:.9rem}
+.answer-card .go{color:var(--gold);font-family:var(--font-ui);font-size:.8rem;font-weight:700;margin-top:.8rem;display:block}
+
+/* ── ANSWER PAGES ── */
+.answer{max-width:860px;margin:0 auto;padding:4.5rem 0 5rem}
+.answer h1{font-size:clamp(2rem,5vw,3.4rem);margin-bottom:1.2rem}
+.qa-box{border:1px solid rgba(255,210,63,.4);background:rgba(255,210,63,.07);border-radius:12px;padding:1.2rem 1.3rem;margin:1.5rem 0 2rem}
+.qa-box strong{font-family:var(--font-ui);color:var(--gold);display:block;margin-bottom:.4rem;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase}
+.qa-box p{color:#f0f0f0;margin:0}
+.answer h2{font-family:var(--font-ui);font-size:1.05rem;letter-spacing:.08em;color:var(--gold);text-transform:uppercase;margin:2.2rem 0 .7rem}
+.answer p,.answer li{color:#c9c9c9;margin-bottom:.7rem;font-size:.98rem}
+.answer ul{padding-left:1.25rem;margin-bottom:1rem}
+.answer table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.9rem}
+.answer th,.answer td{border:1px solid var(--line);padding:.6rem .7rem;text-align:left;color:#ddd}
+.answer th{font-family:var(--font-ui);color:var(--gold)}
+.author-line{margin-top:2.5rem;padding-top:1.2rem;border-top:1px solid var(--line);color:var(--muted);font-size:.85rem;font-family:var(--font-ui)}
+.answer-cta{margin-top:2rem;border:1px solid rgba(255,92,31,.4);background:rgba(255,92,31,.06);border-radius:14px;padding:1.5rem}
+.answer-cta p{margin-bottom:1rem}
+@media (max-width:1000px){.answers-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:760px){.answers-grid{grid-template-columns:1fr}}/* ── LOGO SIZE OVERRIDES ── */
+.logo-img{height:48px}
+.footer-logo{height:64px}
+.venture-line img{height:36px}
+@media (max-width:760px){.logo-img{height:34px}}
+
+/* ── REAL SCREENSHOT SCREEN (CASE STUDY) ── */
+.case-screen{height:540px;overflow-y:auto;background:#fff;scrollbar-width:thin;scrollbar-color:var(--accent) #111}
+.case-screen::-webkit-scrollbar{width:6px}
+.case-screen::-webkit-scrollbar-thumb{background:var(--accent);border-radius:3px}
+.case-screenshot{width:100%;display:block}
+.case-screen iframe{width:100%;height:100%;border:0;display:block}
