@@ -698,6 +698,7 @@
 
 <script>document.querySelectorAll('[data-plan]').forEach(function(b){b.addEventListener('click',function(){var s=document.getElementById('interest');if(s)s.value=b.getAttribute('data-plan')})})</script>
 <script>document.querySelectorAll("[data-scroll]").forEach(function(b){b.addEventListener("click",function(){var t=document.getElementById("blog-track");t.scrollBy({left:b.getAttribute("data-scroll")*t.clientWidth*.8,behavior:"smooth"})})})</script>
+<script>(function(){var b=document.querySelector('.case-screen'),f=b&&b.querySelector('iframe');if(!f)return;function fit(){var w=b.clientWidth,h=b.clientHeight,v=w>=600?1280:w,s=w/v;f.style.width=v+'px';f.style.height=(h/s)+'px';f.style.transform='scale('+s+')'}fit();if(window.ResizeObserver)new ResizeObserver(fit).observe(b);else addEventListener('resize',fit)})()</script>
 <script src="script.js"></script>
 </body>
 </html>
