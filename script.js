@@ -32,14 +32,28 @@ if (revealElements.length) {
 const yearEl = document.getElementById('year');
 if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-// Cookie notice
+// Cookie notice & Microsoft Clarity consent management
 const cookieBar = document.getElementById('cookieBar');
-if (cookieBar && !localStorage.getItem('ajuloCookieChoice')) {
+const savedCookieChoice = localStorage.getItem('ajuloCookieChoice');
+
+if (cookieBar && !savedCookieChoice) {
     cookieBar.hidden = false;
 }
+
+// Pass stored consent preference to Clarity if available
+if (savedCookieChoice) {
+    if (typeof window.clarity === 'function') {
+        window.clarity('consent', savedCookieChoice === 'yes');
+    }
+}
+
 document.querySelectorAll('[data-cookie-choice]').forEach(btn => {
     btn.addEventListener('click', () => {
-        localStorage.setItem('ajuloCookieChoice', btn.dataset.cookieChoice);
+        const choice = btn.dataset.cookieChoice;
+        localStorage.setItem('ajuloCookieChoice', choice);
+        if (typeof window.clarity === 'function') {
+            window.clarity('consent', choice === 'yes');
+        }
         if (cookieBar) cookieBar.hidden = true;
     });
 });

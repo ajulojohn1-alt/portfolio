@@ -4,10 +4,12 @@
 
 ## Core Pages
 - Services & Pricing: https://ajulowebsolutions.com/#packages
-- Case Study (Joel Removals): https://ajulowebsolutions.com/#casestudy
+- Case Study (Joel Removals): https://ajulowebsolutions.com/#proof
+- Website Checker: https://ajulowebsolutions.com/checker.html
 - Contact: https://ajulowebsolutions.com/#contact
 
 ## Trade Answers (Guides)
+- Is missed call text back legal in the UK?: https://ajulowebsolutions.com/answers/is-missed-call-text-back-legal-in-the-uk.html
 - How much does a website cost?: https://ajulowebsolutions.com/answers/how-much-does-a-website-cost-for-a-tradesman.html
 - Do I need a website?: https://ajulowebsolutions.com/answers/do-i-need-a-website-for-my-trade-business.html
 - How to get more quote requests: https://ajulowebsolutions.com/answers/how-to-get-more-quote-requests-for-a-removals-business.html
