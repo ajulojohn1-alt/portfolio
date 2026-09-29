@@ -425,6 +425,51 @@
     </ul>
   </div>
 
+  <section id="results" class="section-pad results-band" aria-labelledby="results-title">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="results-title">The numbers from a live removals website</h2>
+        <p class="lead">Google Search Console and site analytics from joelremovals.co.uk, the custom Wix site we built for a London removals firm. Search figures cover the last 3 months.</p>
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat stat-hero">
+          <p class="stat-num"><span data-count="83.9" data-dec="1">83.9</span>k</p>
+          <p class="stat-label">times Joel Removals appeared in Google results</p>
+          <p class="stat-sub">Over 3 months, bringing 173 clicks through to the site.</p>
+        </div>
+
+        <div class="stat">
+          <p class="stat-num"><span data-count="1.8" data-dec="1">1.8</span></p>
+          <p class="stat-label">average Google position for &ldquo;removals camberwell&rdquo;</p>
+          <p class="stat-sub">Shown 11,046 times in 3 months.</p>
+          <div class="rank" role="img" aria-label="Average position 1.8 out of the first 10 results on Google">
+            <span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <div class="rank-ends" aria-hidden="true"><span>Top of Google</span><span>Position 10</span></div>
+        </div>
+
+        <div class="stat">
+          <p class="stat-num"><span data-count="67">67</span>%</p>
+          <p class="stat-label">of clicks came from searches without the business name</p>
+          <p class="stat-sub">About two in three visitors found Joel Removals without searching for it by name.</p>
+        </div>
+      </div>
+
+      <ul class="stat-rows" aria-label="More Joel Removals results">
+        <li><strong>Positions 1.2 and 1.4</strong><span>Average Google position for &ldquo;moving companies&rdquo; and &ldquo;movers london&rdquo;, two broad London searches</span><b>2,272 impressions</b></li>
+        <li><strong>Fast on real visits</strong><span>Main content loads in 2.2 seconds, rated good, across 80 measured page views</span><b>85/100 in Clarity</b></li>
+        <li><strong>24+ enquiries a month</strong><span>Quote form enquiries, as counted by Joel Removals. This figure is not from Search Console.</span><b>Owner-reported</b></li>
+      </ul>
+
+      <p class="stat-source">Sources: Google Search Console, last 3 months, checked 28 to 29 September 2026; Microsoft Clarity performance score. Average position is across all impressions. Results depend on competition, reviews and time, and are not a guarantee for other businesses.</p>
+      <div class="case-note">
+        <a class="btn btn-primary" href="#contact">Book your revenue audit</a>
+        <a class="btn btn-secondary" href="#proof">See how the site is built</a>
+      </div>
+    </div>
+  </section>
+
   <section id="proof" class="section-pad" aria-labelledby="proof-title">
     <div class="container">
       <div class="section-head">
@@ -721,6 +766,7 @@
 <script>document.querySelectorAll('[data-plan]').forEach(function(b){b.addEventListener('click',function(){var s=document.getElementById('interest');if(s)s.value=b.getAttribute('data-plan')})})</script>
 <script>document.querySelectorAll("[data-scroll]").forEach(function(b){b.addEventListener("click",function(){var t=document.getElementById("blog-track");t.scrollBy({left:b.getAttribute("data-scroll")*t.clientWidth*.8,behavior:"smooth"})})})</script>
 <script>(function(){var b=document.querySelector('.case-screen'),f=b&&b.querySelector('iframe');if(!f)return;function fit(){var w=b.clientWidth,h=b.clientHeight,v=w>=600?1280:w,s=w/v;f.style.width=v+'px';f.style.height=(h/s)+'px';f.style.transform='scale('+s+')'}fit();if(window.ResizeObserver)new ResizeObserver(fit).observe(b);else addEventListener('resize',fit)})()</script>
+<script>(function(){var els=document.querySelectorAll('[data-count]');if(!els.length||!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion:reduce)').matches)return;function fmt(el,v){var d=+el.getAttribute('data-dec')||0;var s=v.toFixed(d);if(el.hasAttribute('data-sep'))s=Number(s).toLocaleString('en-GB');el.textContent=s}var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;io.unobserve(e.target);var el=e.target,end=+el.getAttribute('data-count'),t0=null,dur=1400;function step(t){if(t0===null)t0=t;var p=Math.min((t-t0)/dur,1),k=1-Math.pow(1-p,3);fmt(el,end*k);if(p<1)requestAnimationFrame(step)}requestAnimationFrame(step)})},{threshold:.6});els.forEach(function(el){io.observe(el)})})()</script>
 <script src="script.js"></script>
 </body>
 </html>

@@ -220,3 +220,23 @@ footer{border-top:1px solid var(--line);padding:3rem 0;background:rgba(255,255,2
 .sources li,.sources p{color:var(--muted);font-size:.9rem}
 .cta-box{margin-top:3rem;padding:2rem;background:rgba(255,92,31,.08);border:1px solid var(--accent);border-radius:14px}
 .cta-box h2{margin-top:0;font-size:1.4rem}
+.results-band{border-bottom:1px solid var(--line)}
+.stat-grid{display:grid;grid-template-columns:1.15fr 1fr 1fr;gap:1.25rem}
+.stat{display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:2rem 1.75rem}
+.stat-num{font:800 clamp(4.25rem,8.5vw,7.5rem)/.9 var(--font-display);letter-spacing:-.04em;color:var(--white);max-width:none;font-variant-numeric:tabular-nums}
+.stat-label{margin-top:1rem;font:700 1.2rem/1.25 var(--font-display);letter-spacing:-.01em;color:var(--white)}
+.stat-sub{margin-top:.6rem;font-size:.95rem;color:var(--muted)}
+.stat-hero{background:var(--accent);border-color:var(--accent)}
+.stat-hero .stat-num,.stat-hero .stat-label{color:#120a05}
+.stat-hero .stat-sub{color:rgba(18,10,5,.78)}
+.rank{display:grid;grid-template-columns:repeat(10,1fr);gap:4px;margin-top:auto;padding-top:1.5rem}
+.rank span{height:34px;border-radius:4px;background:rgba(255,255,255,.1)}
+.rank span.on{background:var(--gold)}
+.rank-ends{display:flex;justify-content:space-between;margin-top:.5rem;font-size:.8rem;color:var(--muted)}
+.stat-rows{list-style:none;margin-top:1.25rem;display:grid;gap:.75rem}
+.stat-rows li{display:grid;grid-template-columns:13rem 1fr auto;gap:1.5rem;align-items:center;padding:1.15rem 1.5rem;border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:10px;background:rgba(255,255,255,.03)}
+.stat-rows strong{font:800 1.25rem var(--font-display);letter-spacing:-.01em}
+.stat-rows span{color:var(--muted);font-size:.95rem;line-height:1.45}
+.stat-rows b{color:var(--gold);font-weight:700;white-space:nowrap}
+.stat-source{margin-top:1.25rem;font-size:.82rem;color:var(--muted);max-width:none}
+@media (max-width:1000px){.stat-grid{grid-template-columns:1fr}.stat-rows li{grid-template-columns:1fr;gap:.35rem}}
