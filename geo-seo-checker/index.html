@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,10 +8,23 @@
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://ajulowebsolutions.com/geo-seo-checker">
 
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="48x48" href="/img/ajulo-mark.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/ajulo-mark.png">
+  <link rel="apple-touch-icon" href="/img/ajulo-mark.png">
+
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Free Local SEO & GEO Audit Tool for Trades">
   <meta property="og:description" content="Scan your site in seconds for search engine visibility, AI engine readiness (GEO), and local lead capturing. 100% Free - No Sign-up Required.">
+  <meta property="og:url" content="https://ajulowebsolutions.com/geo-seo-checker/">
+  <meta property="og:image" content="https://ajulowebsolutions.com/img/og-cover.png">
+
+  <!-- Fonts & Main Stylesheet -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
 
   <!-- Schema Markup -->
   <script type="application/ld+json">
@@ -57,7 +70,6 @@
   }
   </script>
 
-  <link rel="stylesheet" href="../styles.css">
   <style>
     .checker-hero { padding: 4rem 1rem 2rem; text-align: center; }
     .badge-free {
@@ -116,26 +128,31 @@
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
   </style>
 </head>
-<body>
+<body id="top">
+  <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="header">
-    <div class="container nav-container">
-      <a href="../" class="logo">Ajulo<span>WebSolutions</span></a>
-      <button class="menu-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle Navigation">☰</button>
-      <nav id="nav-menu">
-        <a href="../#packages">Packages</a>
-        <a href="../#tool">Revenue Calculator</a>
-        <a href="../geo-seo-checker" class="active">Free SEO & GEO Audit</a>
-        <a href="../#contact" class="btn btn-primary">Book Strategy Call</a>
-      </nav>
-    </div>
+    <nav class="site-nav" aria-label="Main">
+      <div class="container nav-inner">
+        <a class="logo" href="/" aria-label="Ajulo Web Solutions, home">
+          <img src="/img/ajulo-web-solutions.png" alt="Ajulo Web Solutions" class="logo-img" width="400" height="70">
+        </a>
+        <button class="menu-toggle" aria-expanded="false" aria-controls="nav-menu">Menu</button>
+        <div class="nav-links" id="nav-menu">
+          <a href="/#packages">Packages</a>
+          <a href="/#calculator">Revenue Calculator</a>
+          <a href="/geo-seo-checker/" class="active" aria-current="page">Free SEO &amp; GEO Audit</a>
+          <a class="btn btn-primary nav-cta" href="/#contact">Book Strategy Call</a>
+        </div>
+      </div>
+    </nav>
   </header>
 
-  <main>
+  <main id="main">
     <section class="checker-hero">
       <div class="container">
         <span class="badge-free">⚡ 100% Free — Instant — No Sign-Up Required</span>
-        <h1>Trade Website SEO & GEO Instant Auditor</h1>
+        <h1>Trade Website SEO &amp; GEO Instant Auditor</h1>
         <p class="lead" style="max-width: 720px; margin: 1rem auto 0; color: #94a3b8;">
           Check if local homeowners and modern AI search engines (Google AI, ChatGPT) can find your trade services in your target area.
         </p>
@@ -150,11 +167,11 @@
               <label for="trade-category">Trade Specialism</label>
               <select id="trade-category" required>
                 <option value="">Select your trade...</option>
-                <option value="plumbing">Plumbing & Heating</option>
+                <option value="plumbing">Plumbing &amp; Heating</option>
                 <option value="electrical">Electrical</option>
-                <option value="roofing">Roofing & Building</option>
-                <option value="removals">Removals & Logistics</option>
-                <option value="landscaping">Landscaping & Tree Surgery</option>
+                <option value="roofing">Roofing &amp; Building</option>
+                <option value="removals">Removals &amp; Logistics</option>
+                <option value="landscaping">Landscaping &amp; Tree Surgery</option>
                 <option value="other">Other Trade Services</option>
               </select>
             </div>
@@ -184,7 +201,7 @@
         <h3>Instant Free Checks (No Registration Needed)</h3>
         <div class="metrics-grid">
           <div class="metric-card" id="card-geo">
-            <div class="metric-head"><span>GEO & AI Readiness</span><span>Analyzing...</span></div>
+            <div class="metric-head"><span>GEO &amp; AI Readiness</span><span>Analyzing...</span></div>
             <p class="metric-desc">Checking JSON-LD Schema structures...</p>
           </div>
           <div class="metric-card" id="card-nap">
@@ -203,14 +220,14 @@
 
         <div class="insights-gate">
           <div class="preview-blur" id="previewBlurSection">
-            <h4>🔒 Locked: Competitor Keyword Gap Analysis & Step-by-Step Fix List</h4>
+            <h4>🔒 Locked: Competitor Keyword Gap Analysis &amp; Step-by-Step Fix List</h4>
             <p>1. Local Town Landing Page Gap: Missing target coverage zones...</p>
             <p>2. Schema Code Injection Payload for Google AI Overviews...</p>
-            <p>3. Speed Optimization & Fast Mobile Tap-to-Call Script...</p>
+            <p>3. Speed Optimization &amp; Fast Mobile Tap-to-Call Script...</p>
           </div>
 
           <div class="gate-overlay" id="gateOverlay">
-            <h3 style="color: #fff; margin-bottom: 0.5rem;">Unlock Your Actionable GEO & SEO Fix Checklist</h3>
+            <h3 style="color: #fff; margin-bottom: 0.5rem;">Unlock Your Actionable GEO &amp; SEO Fix Checklist</h3>
             <p style="color: #94a3b8; font-size: 0.95rem;">
               Enter your email to unlock the specific code snippets, keyword gaps, and roadmap to fix your score.
             </p>
@@ -224,7 +241,7 @@
               <div class="marketing-consent" style="max-width: 480px; margin: 1.25rem auto 0;">
                 <input type="checkbox" id="marketing-consent" required>
                 <label for="marketing-consent">
-                  I agree to receive the detailed SEO/GEO audit report and periodic web design & local growth tips or tailored solution offers from Ajulo Web Solutions. Unsubscribe at any time.
+                  I agree to receive the detailed SEO/GEO audit report and periodic web design &amp; local growth tips or tailored solution offers from Ajulo Web Solutions. Unsubscribe at any time.
                 </label>
               </div>
             </form>
@@ -255,8 +272,8 @@
             Stop losing local quote requests. We build fast, modern, AI-ready trade websites designed to rank locally and convert missed calls into paying jobs.
           </p>
           <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-            <a href="../#packages" class="btn btn-primary">View Website Packages</a>
-            <a href="../#contact" class="btn" style="border: 1px solid rgba(255,255,255,0.2); color: #fff;">Talk to a Specialist</a>
+            <a href="/#packages" class="btn btn-primary">View Website Packages</a>
+            <a href="/#contact" class="btn" style="border: 1px solid rgba(255,255,255,0.2); color: #fff;">Talk to a Specialist</a>
           </div>
         </div>
       </div>
@@ -269,6 +286,7 @@
     </div>
   </footer>
 
-  <script src="../checker.js"></script>
+  <script src="/checker.js"></script>
+  <script src="/script.js"></script>
 </body>
 </html>
