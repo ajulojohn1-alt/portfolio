@@ -1,5 +1,3 @@
-import * as cheerio from 'cheerio';
-
 export async function onRequestPost(context) {
   const headers = {
     'Content-Type': 'application/json',
@@ -38,15 +36,25 @@ export async function onRequestPost(context) {
     }
 
     const html = await targetResponse.text();
-    const $ = cheerio.load(html);
 
-    // Extract content for Qwen AI analysis
-    const title = $('title').text().trim();
-    const metaDesc = $('meta[name="description"]').attr('content') || '';
-    const bodyText = $('body').text().replace(/\s+/g, ' ').slice(0, 3000);
-    
-    const hasSchema = $('script[type="application/ld+json"]').length > 0;
-    const phoneLinks = $('a[href^="tel:"]').length > 0;
+    // Native Extraction (No external packages needed)
+    const titleMatch = html.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
+    const title = titleMatch ? titleMatch[1].trim() : '';
+
+    const metaMatch = html.match(/<meta[^>]*name=["']description["'][^>]*content=["']([^"']*)["']/i) ||
+                      html.match(/<meta[^>]*content=["']([^"']*)["'][^>]*name=["']description["']/i);
+    const metaDesc = metaMatch ? metaMatch[1].trim() : '';
+
+    // Strip tags to extract text content sample
+    const bodyText = html.replace(/<script[\s\S]*?<\/script>/gi, '')
+                         .replace(/<style[\s\S]*?<\/style>/gi, '')
+                         .replace(/<[^>]+>/g, ' ')
+                         .replace(/\s+/g, ' ')
+                         .trim()
+                         .slice(0, 3000);
+
+    const hasSchema = /application\/ld\+json/i.test(html);
+    const phoneLinks = /href=["']tel:[^"']+["']/i.test(html);
 
     // 2. Call Groq API (Qwen 2.5 32B)
     const groqApiKey = context.env.GROQ_API_KEY;
