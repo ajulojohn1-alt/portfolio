@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Local SEO & GEO Audit Tool for Trade Businesses | Ajulo Web Solutions</title>
+  <meta name="description" content="Free instant SEO & GEO (Generative Engine Optimization) checker for trade businesses. See how visible your website is on Google Search, Maps, and AI engines. No sign-up required.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://ajulowebsolutions.com/geo-seo-checker">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Free Local SEO & GEO Audit Tool for Trades">
+  <meta property="og:description" content="Scan your site in seconds for search engine visibility, AI engine readiness (GEO), and local lead capturing. 100% Free - No Sign-up Required.">
+
+  <!-- Schema Markup -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://ajulowebsolutions.com/geo-seo-checker#app",
+        "name": "Trade Business Local SEO & GEO Checker",
+        "url": "https://ajulowebsolutions.com/geo-seo-checker",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "All",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "GBP"
+        },
+        "description": "Instant audit tool evaluating trade websites for Google Local Pack, Schema Markup, and AI Engine Optimization (GEO)."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is GEO (Generative Engine Optimization)?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "GEO optimizes your website to ensure search engines and modern AI models accurately recommend your trade services for local geographic queries."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is this audit tool completely free?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, basic score analysis, core ranking factors, and GEO health checks are 100% free with no account creation required."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    .checker-hero { padding: 4rem 1rem 2rem; text-align: center; }
+    .badge-free {
+      display: inline-block; background: rgba(255, 184, 0, 0.15); color: #ffb800;
+      border: 1px solid #ffb800; font-weight: 700; font-size: 0.85rem; padding: 0.35rem 0.85rem;
+      border-radius: 50px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1rem;
+    }
+    .audit-box {
+      background: #121318; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px;
+      padding: 2rem; max-width: 800px; margin: 2rem auto 0; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+    .audit-form { display: grid; grid-template-columns: 1fr 1fr auto; gap: 1rem; }
+    @media (max-width: 768px) { .audit-form { grid-template-columns: 1fr; } }
+    .form-group { display: flex; flex-direction: column; text-align: left; }
+    .form-group label { font-size: 0.85rem; color: #94a3b8; margin-bottom: 0.4rem; font-weight: 600; }
+    .form-group input, .form-group select {
+      background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 8px; padding: 0.85rem 1rem; color: #fff; font-size: 0.95rem; outline: none;
+    }
+    .form-group input:focus, .form-group select:focus { border-color: #ff5c1f; }
+    .results-container { display: none; margin-top: 3rem; animation: fadeIn 0.4s ease forwards; }
+    .score-banner {
+      display: grid; grid-template-columns: 220px 1fr; gap: 2rem; background: #121318;
+      border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 2rem;
+      align-items: center; margin-bottom: 2rem;
+    }
+    @media (max-width: 768px) { .score-banner { grid-template-columns: 1fr; text-align: center; } }
+    .score-circle {
+      width: 150px; height: 150px; border-radius: 50%; border: 8px solid #ff5c1f;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      margin: 0 auto; background: rgba(255, 92, 31, 0.05);
+    }
+    .score-num { font-size: 2.75rem; font-weight: 800; color: #fff; line-height: 1; }
+    .score-label { font-size: 0.75rem; color: #94a3b8; text-transform: uppercase; margin-top: 0.25rem; }
+    .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; margin-bottom: 2.5rem; }
+    .metric-card { background: #121318; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 1.25rem; text-align: left; }
+    .metric-card.pass { border-left: 4px solid #10b981; }
+    .metric-card.warn { border-left: 4px solid #ffb800; }
+    .metric-card.fail { border-left: 4px solid #ff5c1f; }
+    .metric-head { display: flex; justify-content: space-between; font-weight: 700; font-size: 0.95rem; margin-bottom: 0.5rem; }
+    .metric-desc { font-size: 0.85rem; color: #94a3b8; line-height: 1.4; }
+    .insights-gate {
+      background: linear-gradient(180deg, rgba(255, 92, 31, 0.08), #121318 70%);
+      border: 1px solid #ff5c1f; border-radius: 16px; padding: 2.5rem; text-align: center;
+      position: relative; overflow: hidden; margin-top: 2.5rem;
+    }
+    .preview-blur { filter: blur(4px); opacity: 0.3; user-select: none; pointer-events: none; margin-bottom: 1.5rem; }
+    .gate-overlay { max-width: 560px; margin: 0 auto; }
+    .marketing-consent { display: flex; align-items: flex-start; gap: 0.65rem; text-align: left; margin: 1.25rem 0; font-size: 0.825rem; color: #94a3b8; line-height: 1.4; }
+    .marketing-consent input[type="checkbox"] { margin-top: 0.2rem; accent-color: #ff5c1f; width: 16px; height: 16px; cursor: pointer; }
+    .unlocked-report-panel { text-align: left; background: rgba(16, 185, 129, 0.1); border: 1px solid #10b981; padding: 1.75rem; border-radius: 12px; }
+    .unlocked-report-panel h4 { color: #10b981; margin-bottom: 0.75rem; font-size: 1.1rem; }
+    .unlocked-report-panel ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.75rem; }
+    .unlocked-report-panel li { font-size: 0.9rem; color: #fff; line-height: 1.5; }
+    .funnel-cta-block { margin-top: 4rem; background: #121318; border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 16px; padding: 3rem 2rem; text-align: center; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="container nav-container">
+      <a href="../" class="logo">Ajulo<span>WebSolutions</span></a>
+      <button class="menu-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle Navigation">☰</button>
+      <nav id="nav-menu">
+        <a href="../#packages">Packages</a>
+        <a href="../#tool">Revenue Calculator</a>
+        <a href="../geo-seo-checker" class="active">Free SEO & GEO Audit</a>
+        <a href="../#contact" class="btn btn-primary">Book Strategy Call</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="checker-hero">
+      <div class="container">
+        <span class="badge-free">⚡ 100% Free — Instant — No Sign-Up Required</span>
+        <h1>Trade Website SEO & GEO Instant Auditor</h1>
+        <p class="lead" style="max-width: 720px; margin: 1rem auto 0; color: #94a3b8;">
+          Check if local homeowners and modern AI search engines (Google AI, ChatGPT) can find your trade services in your target area.
+        </p>
+
+        <div class="audit-box">
+          <form id="auditForm" class="audit-form">
+            <div class="form-group">
+              <label for="website-url">Your Website URL</label>
+              <input type="url" id="website-url" placeholder="https://yourtrade.co.uk" required>
+            </div>
+            <div class="form-group">
+              <label for="trade-category">Trade Specialism</label>
+              <select id="trade-category" required>
+                <option value="">Select your trade...</option>
+                <option value="plumbing">Plumbing & Heating</option>
+                <option value="electrical">Electrical</option>
+                <option value="roofing">Roofing & Building</option>
+                <option value="removals">Removals & Logistics</option>
+                <option value="landscaping">Landscaping & Tree Surgery</option>
+                <option value="other">Other Trade Services</option>
+              </select>
+            </div>
+            <div class="form-group" style="justify-content: flex-end;">
+              <button type="submit" id="auditBtn" class="btn btn-primary" style="height: 48px; width: 100%;">Audit My Site</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="container">
+      <div id="resultsContainer" class="results-container">
+        <div class="score-banner">
+          <div class="score-circle">
+            <span class="score-num" id="overallScore">0</span>
+            <span class="score-label">Health Score</span>
+          </div>
+          <div>
+            <h2 style="margin-bottom: 0.5rem;">Audit Breakdown for <span id="targetDomainDisplay" style="color: #ff5c1f;">your site</span></h2>
+            <p class="lead" style="font-size: 1rem; color: #94a3b8;">
+              Live inspection results evaluated against local Google Maps rankings and AI engine discovery standards.
+            </p>
+          </div>
+        </div>
+
+        <h3>Instant Free Checks (No Registration Needed)</h3>
+        <div class="metrics-grid">
+          <div class="metric-card" id="card-geo">
+            <div class="metric-head"><span>GEO & AI Readiness</span><span>Analyzing...</span></div>
+            <p class="metric-desc">Checking JSON-LD Schema structures...</p>
+          </div>
+          <div class="metric-card" id="card-nap">
+            <div class="metric-head"><span>Local NAP Signals</span><span>Analyzing...</span></div>
+            <p class="metric-desc">Checking phone and contact triggers...</p>
+          </div>
+          <div class="metric-card" id="card-mobile">
+            <div class="metric-head"><span>Mobile Responsiveness</span><span>Analyzing...</span></div>
+            <p class="metric-desc">Checking viewport configuration...</p>
+          </div>
+          <div class="metric-card" id="card-conversion">
+            <div class="metric-head"><span>Lead Capture Elements</span><span>Analyzing...</span></div>
+            <p class="metric-desc">Checking contact forms and action buttons...</p>
+          </div>
+        </div>
+
+        <div class="insights-gate">
+          <div class="preview-blur" id="previewBlurSection">
+            <h4>🔒 Locked: Competitor Keyword Gap Analysis & Step-by-Step Fix List</h4>
+            <p>1. Local Town Landing Page Gap: Missing target coverage zones...</p>
+            <p>2. Schema Code Injection Payload for Google AI Overviews...</p>
+            <p>3. Speed Optimization & Fast Mobile Tap-to-Call Script...</p>
+          </div>
+
+          <div class="gate-overlay" id="gateOverlay">
+            <h3 style="color: #fff; margin-bottom: 0.5rem;">Unlock Your Actionable GEO & SEO Fix Checklist</h3>
+            <p style="color: #94a3b8; font-size: 0.95rem;">
+              Enter your email to unlock the specific code snippets, keyword gaps, and roadmap to fix your score.
+            </p>
+
+            <form id="leadGateForm" style="margin-top: 1.5rem;">
+              <div style="display: grid; grid-template-columns: 1fr auto; gap: 0.75rem; max-width: 480px; margin: 0 auto;">
+                <input type="email" id="lead-email" placeholder="owner@yourcompany.co.uk" required style="background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; padding: 0.85rem 1rem; color: #fff;">
+                <button type="submit" id="submitGateBtn" class="btn btn-primary">Get Full Report</button>
+              </div>
+
+              <div class="marketing-consent" style="max-width: 480px; margin: 1.25rem auto 0;">
+                <input type="checkbox" id="marketing-consent" required>
+                <label for="marketing-consent">
+                  I agree to receive the detailed SEO/GEO audit report and periodic web design & local growth tips or tailored solution offers from Ajulo Web Solutions. Unsubscribe at any time.
+                </label>
+              </div>
+            </form>
+            <p id="gateErrorMsg" style="display: none; color: #ff5c1f; font-weight: 600; margin-top: 1rem; font-size: 0.9rem;">
+              ⚠️ Submission failed. Please try again.
+            </p>
+          </div>
+
+          <div id="gateSuccessContainer" style="display: none;">
+            <p style="color: #10b981; font-weight: 700; margin-bottom: 1.5rem; font-size: 1.1rem;">
+              ✓ Full report unlocked! Below is your immediate priority action list.
+            </p>
+            <div class="unlocked-report-panel">
+              <h4>Priority Action Plan for <span id="unlockedDomainName">Your Business</span></h4>
+              <ul>
+                <li><strong>1. LocalBusiness JSON-LD Schema:</strong> Inject geo-coordinates and primary trade categories directly into your website header for Google AI Overviews.</li>
+                <li><strong>2. Fast-Response Call Triggers:</strong> Connect call buttons to instant automated SMS text-backs so missed callers receive immediate quote links.</li>
+                <li><strong>3. Town Landing Page Expansion:</strong> Create dedicated pages for your top 5 surrounding trade service towns.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="funnel-cta-block">
+          <p style="color: #ffb800; font-weight: 700; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.05em;">Prefer It Done For You?</p>
+          <h2>We Build High-Converting, GEO-Optimized Websites for Trades</h2>
+          <p style="max-width: 680px; margin: 0.75rem auto 1.5rem; color: #94a3b8;">
+            Stop losing local quote requests. We build fast, modern, AI-ready trade websites designed to rank locally and convert missed calls into paying jobs.
+          </p>
+          <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <a href="../#packages" class="btn btn-primary">View Website Packages</a>
+            <a href="../#contact" class="btn" style="border: 1px solid rgba(255,255,255,0.2); color: #fff;">Talk to a Specialist</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer style="padding: 2rem 0; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; color: #94a3b8; font-size: 0.85rem; margin-top: 4rem;">
+    <div class="container">
+      <p>&copy; 2026 Ajulo Web Solutions. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="../checker.js"></script>
+</body>
+</html>
