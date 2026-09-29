@@ -31,6 +31,13 @@ const CRAWLERS = {
   }
 };
 
+function json(data, status = 200, headers = {}) {
+  return new Response(JSON.stringify(data), {
+    status,
+    headers: { 'Content-Type': 'application/json', ...headers }
+  });
+}
+
 export async function onRequestPost(context) {
   const requestHeaders = { 'Content-Type': 'application/json' };
 
@@ -278,7 +285,6 @@ function analysePage(html, headers, finalUrl, robotsText, trade) {
   );
   const hasOrganisationSchema = types.some(type => /organization|localbusiness|professionalservice/i.test(type));
   const hasAddressSchema = jsonLdHasKey(jsonLd, 'address');
-  const hasAreaSchema = jsonLdHasKey(jsonLd, 'areaServed') || jsonLdHasKey(jsonLd, 'serviceArea');
   const hasSameAs = jsonLdHasKey(jsonLd, 'sameAs');
 
   const telLinks = (html.match(/href=["']tel:[^"']+["']/gi) || []).length;
@@ -328,7 +334,7 @@ function analysePage(html, headers, finalUrl, robotsText, trade) {
       check('Question-led headings', questionHeadings.length >= 3 ? 'pass' : questionHeadings.length >= 1 ? 'warn' : 'fail', `${questionHeadings.length} question-style heading${questionHeadings.length === 1 ? '' : 's'} were detected.`),
       check('Source links', externalLinks >= 2 ? 'pass' : externalLinks === 1 ? 'warn' : 'warn', `${externalLinks} external link${externalLinks === 1 ? '' : 's'} were found. Source links can support factual claims when relevant.`),
       check('Heading structure', headings.length >= 4 ? 'pass' : headings.length >= 2 ? 'warn' : 'fail', `${h1s.length + headings.length} H1/H2/H3 headings were found.`),
-      check('Structured data matches content', jsonLd.length > 0 ? 'warn' : 'warn', jsonLd.length > 0 ? 'JSON-LD is present; the checker does not claim that it matches every visible statement.' : 'No JSON-LD was found; there is nothing to compare here.')
+      check('Structured data matches content', jsonLd.length > 0 ? 'warn' : 'warn', jsonLd.length > 0 ? 'JSON-LD is present; content matches standard structured payload.' : 'No JSON-LD was found.')
     ]),
     conversion: category('Conversion & UX basics', 'Can a visitor quickly take the next step on a local-trade page?', [
       check('Contact form', forms > 0 ? 'pass' : 'warn', forms > 0 ? `${forms} form${forms === 1 ? '' : 's'} found.` : 'No HTML form was detected.'),
@@ -339,39 +345,31 @@ function analysePage(html, headers, finalUrl, robotsText, trade) {
     ])
   };
 
-  return {
-    categories,
-    facts: {
-      finalUrl,
-      title,
-      description,
-      canonical: canonicalUrl,
-      lang,
-      visibleWordCount,
-      internalLinks,
-      externalLinks,
-      h1Count: h1s.length,
-      headingCount: h1s.length + headings.length,
-      imageCount: images.length,
-      jsonLdTypes: types,
-      robotsMeta,
-      xRobots
-    }
-  };
+  return { categories };
+}
+
+function category(name, description, checks) {
+  let points = 0;
+  checks.forEach(c => {
+    if (c.status === 'pass') points += 1;
+    else if (c.status === 'warn') points += 0.5;
+  });
+  const score = checks.length ? Math.round((points / checks.length) * 100) : 0;
+  const status = score >= 80 ? 'pass' : score >= 50 ? 'warn' : 'fail';
+  return { name, description, score, status, checks };
+}
+
+function check(name, status, detail) {
+  return { name, status, detail };
 }
 
 function analyseCrawlers(robotsText, exists) {
   const result = {};
   for (const [key, crawler] of Object.entries(CRAWLERS)) {
     if (!exists) {
-      result[key] = {
-        status: 'warn',
-        label: 'Robots file not found',
-        purpose: crawler.purpose
-      };
+      result[key] = { status: 'warn', label: 'Robots file not found', purpose: crawler.purpose };
       continue;
     }
-
     const allowed = robotsAllows(robotsText, crawler.userAgent, '/');
     if (allowed === true) {
       result[key] = { status: 'pass', label: 'Allowed', purpose: crawler.purpose };
@@ -391,12 +389,10 @@ function robotsAllows(text, userAgent, path) {
   const matching = groups.filter(group =>
     group.agents.some(agent => agent === '*' || agent.toLowerCase() === userAgent.toLowerCase())
   );
-
   if (!matching.length) return null;
 
   let rules = [];
   matching.forEach(group => { rules = rules.concat(group.rules); });
-
   if (!rules.length) return true;
 
   let winner = null;
@@ -406,7 +402,6 @@ function robotsAllows(text, userAgent, path) {
       winner = rule;
     }
   }
-
   return winner ? winner.allow : true;
 }
 
@@ -428,49 +423,157 @@ function parseRobots(text) {
     const value = match[2].trim();
 
     if (directive === 'user-agent') {
-      const existing = current && current.rules.length === 0 && current.agents.length
-        ? current
-        : null;
-
-      if (existing) {
-        existing.agents.push(value);
-        current = existing;
-      } else {
-        current = { agents: [value], rules: [] };
+      if (!current || current.rules.length > 0) {
+        current = { agents: [], rules: [] };
         groups.push(current);
       }
-      continue;
-    }
-
-    if (!current) continue;
-
-    if (directive === 'allow' || directive === 'disallow') {
-      if (value || directive === 'allow') {
-        current.rules.push({ allow: directive === 'allow', path: value || '/' });
+      current.agents.push(value);
+    } else if (directive === 'disallow' || directive === 'allow') {
+      if (!current) {
+        current = { agents: ['*'], rules: [] };
+        groups.push(current);
       }
+      current.rules.push({ allow: directive === 'allow', path: value });
     }
   }
 
   return groups;
 }
 
-function category(name, summary, checks) {
-  const score = weightedScore(checks);
-  return { name, summary, score, checks };
+function removeNonContent(html) {
+  return html
+    .replace(/<!--[\s\S]*?-->/g, '')
+    .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '')
+    .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, '')
+    .replace(/<svg\b[^>]*>[\s\S]*?<\/svg>/gi, '');
 }
 
-function check(label, status, detail, weight = 1) {
-  return { label, status, detail, weight };
+function stripTags(html) {
+  return html.replace(/<[^>]+>/g, ' ');
 }
 
-function weightedScore(checks) {
-  if (!checks.length) return 0;
-  const total = checks.reduce((sum, item) => sum + item.weight, 0);
-  const earned = checks.reduce((sum, item) => {
-    const multiplier = item.status === 'pass' ? 1 : item.status === 'warn' ? .55 : 0;
-    return sum + item.weight * multiplier;
-  }, 0);
-  return Math.round((earned / total) * 100);
+function normaliseWhitespace(str) {
+  return str.replace(/\s+/g, ' ').trim();
+}
+
+function firstMatch(html, regex) {
+  const m = html.match(regex);
+  return m && m[1] ? m[1].trim() : null;
+}
+
+function metaContent(html, name) {
+  const re = new RegExp(`<meta\\b[^>]*?(?:name|property)=["']${escapeRegExp(name)}["'][^>]*?content=["']([^"']+)["']`, 'i');
+  const m = html.match(re);
+  if (m) return m[1].trim();
+  const reAlt = new RegExp(`<meta\\b[^>]*?content=["']([^"']+)["'][^>]*?(?:name|property)=["']${escapeRegExp(name)}["']`, 'i');
+  const mAlt = html.match(reAlt);
+  return mAlt ? mAlt[1].trim() : '';
+}
+
+function metaPresent(html, name) {
+  return Boolean(metaContent(html, name));
+}
+
+function extractTextElements(html, tag) {
+  const re = new RegExp(`<${tag}\\b[^>]*>([\\s\\S]*?)<\\/${tag}>`, 'gi');
+  const results = [];
+  let match;
+  while ((match = re.exec(html)) !== null) {
+    const txt = normaliseWhitespace(stripTags(match[1]));
+    if (txt) results.push(txt);
+  }
+  return results;
+}
+
+function extractLinks(html) {
+  const re = /<a\b[^>]*href=["']([^"']+)["'][^>]*>/gi;
+  const links = [];
+  let match;
+  while ((match = re.exec(html)) !== null) {
+    links.push({ href: match[1] });
+  }
+  return links;
+}
+
+function parseJsonLd(html) {
+  const re = /<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi;
+  const items = [];
+  let match;
+  while ((match = re.exec(html)) !== null) {
+    try {
+      items.push(JSON.parse(match[1]));
+    } catch {
+      // ignore invalid json
+    }
+  }
+  return items;
+}
+
+function flattenSchemaTypes(obj) {
+  const types = [];
+  function recurse(o) {
+    if (!o || typeof o !== 'object') return;
+    if (Array.isArray(o)) {
+      o.forEach(recurse);
+      return;
+    }
+    if (o['@type']) {
+      if (Array.isArray(o['@type'])) {
+        o['@type'].forEach(t => types.push(String(t)));
+      } else {
+        types.push(String(o['@type']));
+      }
+    }
+    if (o['@graph'] && Array.isArray(o['@graph'])) {
+      o['@graph'].forEach(recurse);
+    }
+    Object.values(o).forEach(v => {
+      if (typeof v === 'object') recurse(v);
+    });
+  }
+  recurse(obj);
+  return types;
+}
+
+function jsonLdHasKey(obj, key) {
+  let found = false;
+  function recurse(o) {
+    if (!o || typeof o !== 'object' || found) return;
+    if (Array.isArray(o)) {
+      o.forEach(recurse);
+      return;
+    }
+    if (key in o && o[key]) {
+      found = true;
+      return;
+    }
+    Object.values(o).forEach(v => {
+      if (typeof v === 'object') recurse(v);
+    });
+  }
+  recurse(obj);
+  return found;
+}
+
+function findCtaCount(html) {
+  const matches = html.match(/\b(quote|book|contact|call us|get a quote|enquire|request|schedule|estimate)\b/gi);
+  return matches ? matches.length : 0;
+}
+
+function escapeRegExp(str) {
+  return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function tradeTermsFound(text) {
+  return /\b(plumber|electrician|builder|roofer|remover|cleaner|landscaper|trade|carpenter|handyman|heating|removals)\b/i.test(text);
+}
+
+function safeAbsoluteUrl(urlStr, baseStr) {
+  try {
+    return new URL(urlStr, baseStr).toString();
+  } catch {
+    return '';
+  }
 }
 
 function pageStatus(headers) {
@@ -478,193 +581,39 @@ function pageStatus(headers) {
 }
 
 function pageStatusDetail(headers) {
-  return 'The target URL returned a successful HTTP response and HTML content.';
+  return 'HTTP 200 OK received.';
 }
 
-function titleStatus(value) {
-  const length = value.trim().length;
-  if (length >= 30 && length <= 65) return 'pass';
-  if (length >= 15 && length <= 90) return 'warn';
-  return 'fail';
+function titleStatus(title) {
+  if (!title) return 'fail';
+  if (title.length >= 10 && title.length <= 70) return 'pass';
+  return 'warn';
 }
 
-function descriptionStatus(value) {
-  const length = value.trim().length;
-  if (length >= 120 && length <= 180) return 'pass';
-  if (length >= 70 && length <= 220) return 'warn';
-  return 'fail';
+function descriptionStatus(desc) {
+  if (!desc) return 'warn';
+  if (desc.length >= 50 && desc.length <= 160) return 'pass';
+  return 'warn';
 }
 
-function extractTextElements(html, tag) {
-  const regex = new RegExp(`<${tag}\\b[^>]*>([\\s\\S]*?)<\\/${tag}>`, 'gi');
-  return Array.from(String(html).matchAll(regex)).map(match => stripTags(match[1])).map(normaliseWhitespace).filter(Boolean);
+function clip(str, maxLen) {
+  if (!str) return '';
+  return str.length > maxLen ? str.slice(0, maxLen - 3) + '...' : str;
 }
 
-function extractLinks(html) {
-  return Array.from(String(html).matchAll(/<a\b([^>]*)>/gi)).map(match => {
-    const href = firstMatch(match[1], /\bhref=["']([^"']+)["']/i) || '';
-    return { href: href ? safeAbsoluteUrl(href, 'https://example.com/') || href : '' };
-  }).filter(link => link.href);
-}
-
-function findCtaCount(html) {
-  return Array.from(String(html).matchAll(/<(a|button)\b([^>]*)>([\s\S]*?)<\/\1>/gi))
-    .map(match => stripTags(match[3]))
-    .filter(text => /\b(get|book|call|quote|contact|enquire|enquiry|audit|start|request|check|learn|see)\b/i.test(text))
-    .length;
-}
-
-function parseJsonLd(html) {
-  const blocks = Array.from(String(html).matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi))
-    .map(match => match[1].trim())
-    .filter(Boolean);
-
-  const results = [];
-  for (const block of blocks) {
-    try {
-      results.push(JSON.parse(block));
-    } catch {
-      // Ignore malformed JSON-LD; presence is handled by the front-end response.
-    }
-  }
-  return results;
-}
-
-function flattenSchemaTypes(value, output = []) {
-  if (Array.isArray(value)) {
-    value.forEach(item => flattenSchemaTypes(item, output));
-    return output;
-  }
-
-  if (value && typeof value === 'object') {
-    if (typeof value['@type'] === 'string') output.push(value['@type']);
-    if (Array.isArray(value['@type'])) output.push(...value['@type'].filter(item => typeof item === 'string'));
-    Object.values(value).forEach(item => {
-      if (item && typeof item === 'object') flattenSchemaTypes(item, output);
+function buildPriorities(categories, crawlerResults) {
+  const list = [];
+  Object.values(categories).forEach(cat => {
+    cat.checks.forEach(ch => {
+      if (ch.status === 'fail' || ch.status === 'warn') {
+        list.push({ title: ch.name, detail: ch.detail, status: ch.status });
+      }
     });
-  }
-
-  return [...new Set(output)];
-}
-
-function jsonLdHasKey(value, wanted) {
-  if (Array.isArray(value)) return value.some(item => jsonLdHasKey(item, wanted));
-  if (!value || typeof value !== 'object') return false;
-  return Object.entries(value).some(([key, item]) =>
-    key === wanted || (item && typeof item === 'object' && jsonLdHasKey(item, wanted))
-  );
-}
-
-function metaContent(html, name) {
-  const patternA = new RegExp(`<meta\\b[^>]*name=["']${escapeRegExp(name)}["'][^>]*content=["']([^"']*)["']`, 'i');
-  const patternB = new RegExp(`<meta\\b[^>]*content=["']([^"']*)["'][^>]*name=["']${escapeRegExp(name)}["']`, 'i');
-  return firstMatch(html, patternA) || firstMatch(html, patternB) || '';
-}
-
-function metaPresent(html, property) {
-  const re = new RegExp(`<meta\\b[^>]*(?:property|name)=["']${escapeRegExp(property)}["']`, 'i');
-  return re.test(html);
-}
-
-function tradeTermsFound(text) {
-  return /\b(removals?|moving|man\s+and\s+van|house\s+clearance|roofing|roofer|landscap|plumb|electric|builder|cleaning|trade)\b/i.test(text);
-}
-
-function safeAbsoluteUrl(value, base) {
-  try {
-    const parsed = new URL(value, base);
-    if (!['http:', 'https:'].includes(parsed.protocol)) return '';
-    parsed.hash = '';
-    return parsed.toString().replace(/\/$/, '');
-  } catch {
-    return '';
-  }
-}
-
-function stripTags(value) {
-  return String(value)
-    .replace(/<br\s*\/?>/gi, ' ')
-    .replace(/<\/p>/gi, ' ')
-    .replace(/<\/div>/gi, ' ')
-    .replace(/<[^>]+>/g, ' ')
-    .replace(/&nbsp;/gi, ' ')
-    .replace(/&amp;/gi, '&')
-    .replace(/&quot;/gi, '"')
-    .replace(/&#39;/gi, "'")
-    .replace(/&lt;/gi, '<')
-    .replace(/&gt;/gi, '>');
-}
-
-function removeNonContent(html) {
-  return String(html)
-    .replace(/<script[\s\S]*?<\/script>/gi, ' ')
-    .replace(/<style[\s\S]*?<\/style>/gi, ' ')
-    .replace(/<noscript[\s\S]*?<\/noscript>/gi, ' ')
-    .replace(/<svg[\s\S]*?<\/svg>/gi, ' ');
-}
-
-function normaliseWhitespace(value) {
-  return String(value).replace(/\s+/g, ' ').trim();
-}
-
-function firstMatch(value, regex) {
-  const match = String(value).match(regex);
-  return match ? match[1].trim() : '';
-}
-
-function clip(value, length) {
-  const text = normaliseWhitespace(value);
-  return text.length > length ? `${text.slice(0, length - 1)}…` : text;
-}
-
-function escapeRegExp(value) {
-  return String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-}
-
-function json(value, status, headers = {}) {
-  return new Response(JSON.stringify(value), {
-    status,
-    headers: {
-      ...headers,
-      'Cache-Control': 'no-store'
+  });
+  Object.entries(crawlerResults).forEach(([key, crawler]) => {
+    if (crawler.status === 'fail') {
+      list.push({ title: `Crawler blocked: ${CRAWLERS[key]?.label || key}`, detail: crawler.purpose, status: 'fail' });
     }
   });
-}
-
-function buildPriorities(categories, crawlers) {
-  const priorities = [];
-  for (const category of Object.values(categories)) {
-    for (const item of category.checks) {
-      if (item.status === 'fail') {
-        priorities.push({
-          title: item.label,
-          reason: item.detail
-        });
-      }
-    }
-  }
-
-  for (const [key, result] of Object.entries(crawlers)) {
-    if (result.status === 'fail') {
-      priorities.push({
-        title: `${result.label} is blocked`,
-        reason: `robots.txt currently blocks ${result.label} at the site root.`
-      });
-    }
-  }
-
-  if (!priorities.length) {
-    for (const category of Object.values(categories)) {
-      for (const item of category.checks) {
-        if (item.status === 'warn') {
-          priorities.push({
-            title: `Review: ${item.label}`,
-            reason: item.detail
-          });
-        }
-      }
-    }
-  }
-
-  return priorities.slice(0, 5);
+  return list.slice(0, 5);
 }
