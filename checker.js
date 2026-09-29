@@ -24,13 +24,23 @@ document.addEventListener('DOMContentLoaded', () => {
 async function handleAuditSubmit(e) {
   e.preventDefault();
 
-  const urlInput = document.getElementById('website-url').value;
+  const urlInputEl = document.getElementById('website-url');
   const categoryInput = document.getElementById('trade-category').value;
   const submitBtn = document.getElementById('auditBtn');
 
-  if (!urlInput || !categoryInput) return;
+  if (!urlInputEl || !urlInputEl.value.trim() || !categoryInput) return;
 
-  const cleanDomain = urlInput.replace(/^https?:\/\//i, '').replace(/\/.*$/, '');
+  // 1. Clean raw input: strip existing protocol/slashes
+  let rawUrl = urlInputEl.value.trim().toLowerCase();
+  rawUrl = rawUrl.replace(/^https?:\/\//i, '').replace(/^\/+/, '');
+
+  // 2. Prepend clean https:// protocol
+  const formattedUrl = 'https://' + rawUrl;
+
+  // 3. Update field visually and for lead gate submission
+  urlInputEl.value = formattedUrl;
+
+  const cleanDomain = rawUrl.replace(/\/.*$/, '');
   
   submitBtn.disabled = true;
   submitBtn.textContent = 'Scanning Site...';
@@ -39,7 +49,7 @@ async function handleAuditSubmit(e) {
     const response = await fetch(CONFIG.AUDIT_API_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ url: urlInput, trade: categoryInput })
+      body: JSON.stringify({ url: formattedUrl, trade: categoryInput })
     });
 
     const data = await response.json();
