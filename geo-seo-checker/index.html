@@ -164,7 +164,7 @@
 /* ===== Executive overview ===== */
 .exec-card{background:linear-gradient(180deg,rgba(255,210,63,.07),var(--panel) 65%);border:1px solid rgba(255,210,63,.35);border-radius:16px;padding:1.9rem;margin-bottom:1.75rem}
 .exec-kicker{display:block;color:var(--gold);font-size:.78rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;margin-bottom:.4rem}
-.exec-card h2{font-size:1.35rem;margin:0 0 .5rem}
+.exec-card h2{font-size:1.35rem;margin:0 0 .5rem;max-width:none}
 .exec-summary{color:var(--muted);font-size:.95rem;margin:0 0 1.25rem}
 .exec-list{list-style:none;counter-reset:x;margin:0;padding:0;display:grid;gap:1rem}
 .exec-list li{counter-increment:x;position:relative;padding-left:3.1rem}
@@ -291,8 +291,8 @@
 .report.gated .upsell-zone{display:none}
 .report.gated .gate-card{margin-top:2rem}
 .gate-card{background:linear-gradient(180deg,rgba(255,92,31,.09),var(--panel) 70%);border:1px solid var(--accent);border-radius:16px;padding:2rem;text-align:center;margin-top:2rem}
-.gate-card h3{margin:0 0 .4rem}
-.gate-card>p{color:var(--muted);font-size:.95rem;margin:0 auto 1.25rem;max-width:56ch}
+.gate-card h3{margin:0 0 .4rem;max-width:none}
+.gate-card #gateFormWrap > p{color:var(--muted);font-size:.95rem;margin:0 auto 1.25rem;max-width:52ch;text-wrap:balance}
 .gate-card .gate-success-msg{margin-top:0}
 .report.unlocked .gate-card{background:linear-gradient(180deg,rgba(16,185,129,.09),var(--panel) 70%);border-color:#10b981}
 .gate-form{display:grid;gap:.75rem;max-width:480px;margin:0 auto}
