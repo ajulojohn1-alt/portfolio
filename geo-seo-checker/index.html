@@ -70,7 +70,7 @@
     {
      "@type": "Question",
      "name": "Is this SEO and GEO audit really free?",
-     "acceptedAnswer": { "@type": "Answer", "text": "Yes. The health score and all 85 checks run instantly in your browser with no account. The only thing your email address is used for is emailing the optional fix roadmap." }
+     "acceptedAnswer": { "@type": "Answer", "text": "Yes. Your score, priority fixes, executive overview and speed estimate are free instantly, with no account. To unlock the complete 85-point technical analysis you enter your email — that is how we know who to send the fix roadmap to." }
     },
     {
      "@type": "Question",
@@ -287,9 +287,14 @@
 .upsell-card .btn.wide{align-self:stretch;text-align:center}
 
 /* ===== Email gate ===== */
+.report.gated .deepdive,
+.report.gated .upsell-zone{display:none}
+.report.gated .gate-card{margin-top:2rem}
 .gate-card{background:linear-gradient(180deg,rgba(255,92,31,.09),var(--panel) 70%);border:1px solid var(--accent);border-radius:16px;padding:2rem;text-align:center;margin-top:2rem}
 .gate-card h3{margin:0 0 .4rem}
 .gate-card>p{color:var(--muted);font-size:.95rem;margin:0 auto 1.25rem;max-width:56ch}
+.gate-card .gate-success-msg{margin-top:0}
+.report.unlocked .gate-card{background:linear-gradient(180deg,rgba(16,185,129,.09),var(--panel) 70%);border-color:#10b981}
 .gate-form{display:grid;gap:.75rem;max-width:480px;margin:0 auto}
 @media (min-width:600px){.gate-form{grid-template-columns:1fr auto;align-items:start}}
 .marketing-consent{display:flex;align-items:flex-start;gap:.65rem;text-align:left;margin:.75rem auto 0;font-size:.83rem;color:var(--muted);line-height:1.45;max-width:480px}
@@ -322,7 +327,8 @@
 .compare-table th,.compare-table td{border:1px solid var(--line);padding:.7rem .85rem;text-align:left;vertical-align:top;color:#d6d6db}
 .compare-table thead th,.compare-table th[scope=row]{color:var(--gold);background:rgba(255,255,255,.03)}
 
-.cta-box{text-align:center}
+.cta-box{text-align:center;max-width:760px;margin-inline:auto}
+.cta-box h2{max-width:none;text-wrap:balance}
 .cta-box p{margin-inline:auto}
 .cta-kicker{color:var(--gold);font-weight:600;text-transform:uppercase;font-size:.82rem;letter-spacing:.06em;margin-bottom:.75rem}
 .cta-buttons{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-top:1.5rem}
@@ -374,7 +380,7 @@
   <!-- ================= HERO + TOOL ================= -->
   <section class="checker-hero" aria-labelledby="checker-title">
     <div class="container">
-      <span class="badge-free">100% free · instant · no sign-up</span>
+      <span class="badge-free">100% free · instant results</span>
       <h1 id="checker-title">Free SEO &amp; GEO audit for UK trade websites</h1>
       <p class="lead" style="max-width:760px;margin:1rem auto 0">Homeowners now ask Google, Maps and AI assistants like ChatGPT to find a local trade. Enter your web address and get an 85-point technical report — AI readiness, speed, security and lead capture — in about ten seconds.</p>
 
@@ -410,7 +416,7 @@
   <div class="trust">
     <ul class="container" aria-label="About this free audit">
       <li><strong>Instant</strong>An 85-point technical report in seconds.</li>
-      <li><strong>No sign-up</strong>The full report is free. No account, no card.</li>
+      <li><strong>Free score</strong>Score, top fixes and speed estimate free.</li>
       <li><strong>Nothing stored</strong>The scan runs live in your browser.</li>
       <li><strong>Built for trades</strong>Made by Ajulo, UK trade web specialists.</li>
     </ul>
@@ -467,6 +473,37 @@
         <p class="psi-note">Simulated lab data derived from your page's HTML, response headers and resource hints — directionally accurate, but not a Lighthouse run. Book a health check for measured field data on real devices.</p>
       </section>
 
+      <!-- ===== EMAIL WALL: full analysis locked until opted-in ===== -->
+      <div class="gate-card" id="gateCard">
+        <div id="gateFormWrap">
+          <h3>Unlock your full 85-point report</h3>
+          <p>You've seen the headline score, your priority fixes and your speed estimate. Enter your email to unlock the complete technical analysis — every check, every failure, the fix roadmap and the recommendations — plus we'll send you the report to keep.</p>
+          <form id="leadGateForm" class="gate-form">
+            <input type="hidden" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <input type="email" id="lead-email" name="lead-email" placeholder="owner@yourcompany.co.uk" autocomplete="email" required aria-label="Your email address">
+            <button type="submit" id="submitGateBtn" class="btn btn-primary">Unlock full report</button>
+            <div class="marketing-consent">
+              <input type="checkbox" id="marketing-consent" required>
+              <label for="marketing-consent">Email me my full report and, occasionally, web design and local growth tips from Ajulo Web Solutions. Unsubscribe any time.</label>
+            </div>
+          </form>
+          <p id="gateErrorMsg" class="gate-error" style="display:none">Submission failed — please try again.</p>
+        </div>
+
+        <div id="gateSuccessContainer" style="display:none">
+          <p class="gate-success-msg">Full report unlocked — here's the complete analysis for <span id="unlockedDomainName">your site</span>.</p>
+          <div class="unlocked-report-panel">
+            <h4>Your priority action plan</h4>
+            <ul>
+              <li><strong>1. Fix the red flags first:</strong> work down the Priority Fixes list above — each one is ranked by how much visibility or revenue it is costing you.</li>
+              <li><strong>2. Work the full report top to bottom:</strong> every failed and "review" check below includes a plain-English explanation of what to do about it.</li>
+              <li><strong>3. Hand it to us instead:</strong> everything in this report is what we fix daily. <a href="/#contact">Book a free health check</a> and we'll do it for you.</li>
+            </ul>
+            <p class="panel-foot">A copy of this report is on its way to your inbox. Want it done for you? <a href="/#packages">See our packages</a> or <a href="/#contact">book a free health check</a>.</p>
+          </div>
+        </div>
+      </div>
+
       <section class="deepdive" aria-labelledby="deepTitle">
         <div class="deep-head">
           <div>
@@ -492,47 +529,7 @@
         <h2 id="upsellTitle">Where to go from here</h2>
         <p>Based on your results, these are the services that fix exactly what this audit found — no guessing, no retainer.</p>
         <div class="upsell-grid" id="upsellWrap"></div>
-
-        <div class="gate-card" id="gateCard">
-          <div id="gateFormWrap">
-            <h3>Email me this report and my fix roadmap</h3>
-            <p>The full 85-point report plus a step-by-step roadmap written for your trade — so you can work through the priority fixes in order, or hand it straight to whoever builds your site.</p>
-            <form id="leadGateForm" class="gate-form">
-              <input type="hidden" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-              <input type="email" id="lead-email" name="lead-email" placeholder="owner@yourcompany.co.uk" autocomplete="email" required aria-label="Your email address">
-              <button type="submit" id="submitGateBtn" class="btn btn-primary">Send my roadmap</button>
-              <div class="marketing-consent">
-                <input type="checkbox" id="marketing-consent" required>
-                <label for="marketing-consent">Email me the report and, occasionally, web design and local growth tips from Ajulo Web Solutions. Unsubscribe any time.</label>
-              </div>
-            </form>
-            <p id="gateErrorMsg" class="gate-error" style="display:none">Submission failed — please try again.</p>
-          </div>
-
-          <div id="gateSuccessContainer" style="display:none">
-            <p class="gate-success-msg">Report and roadmap on their way — here's your action list.</p>
-            <div class="unlocked-report-panel">
-              <h4>Priority action plan for <span id="unlockedDomainName">your business</span></h4>
-              <ul>
-                <li><strong>1. LocalBusiness JSON-LD schema:</strong> state who you are, what you do, your area and your phone in machine-readable form, so Google AI Overviews and chatbots can quote you.</li>
-                <li><strong>2. Tap-to-call with instant text back:</strong> make calling one tap and auto-reply to missed calls so no quote request goes cold.</li>
-                <li><strong>3. Area and service landing pages:</strong> one clear page per service and per town you cover, written the way customers actually search.</li>
-              </ul>
-              <p class="panel-foot">Want these done for you? <a href="/#packages">See our packages</a> or <a href="/#contact">book a free health check</a>.</p>
-            </div>
-          </div>
-        </div>
       </section>
-
-      <div class="cta-box">
-        <p class="cta-kicker">Prefer it done for you?</p>
-        <h2>We build the websites this audit rewards</h2>
-        <p>Fast, GEO-ready sites for UK trades, with the schema, local structure and lead capture this audit measures. Fixed prices from £2,497.</p>
-        <div class="cta-buttons">
-          <a href="/#packages" class="btn btn-primary">See packages and prices</a>
-          <a href="/#contact" class="btn btn-secondary">Book your health check</a>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -683,7 +680,7 @@
     <div class="container">
       <div class="section-head"><h2 id="faq-title">SEO and GEO audit questions, answered</h2></div>
       <div class="faq-list">
-        <details class="faq-item"><summary>Is this SEO and GEO audit really free?</summary><p>Yes. The health score and all 85 checks run instantly in your browser with no account. The only thing your email address is used for is emailing the optional fix roadmap.</p></details>
+        <details class="faq-item"><summary>Is this SEO and GEO audit really free?</summary><p>Yes. Your score, priority fixes, executive overview and speed estimate are free instantly, with no account. To unlock the complete 85-point technical analysis you enter your email — that's how we know who to send the fix roadmap to.</p></details>
         <details class="faq-item"><summary>What does the score actually mean?</summary><p>It's a snapshot out of 100 of how ready your homepage is for local search and AI recommendations, weighted across the five areas above. It's a starting point, not a substitute for a full audit — for the deep version, <a href="/#contact">book a free health check</a>.</p></details>
         <details class="faq-item"><summary>Does the audit scan my whole website?</summary><p>It inspects your homepage plus the files that govern your whole site — robots.txt, XML sitemap, llms.txt, DNS records and security headers. A whole-site audit of every service and area page is part of the health check.</p></details>
         <details class="faq-item"><summary>Do you store my website or email details?</summary><p>No. The scan runs live in your browser and nothing is saved. Your email is used to send your report and, only if you tick the box, occasional growth tips. See the <a href="/privacy.html">Privacy Policy</a>.</p></details>

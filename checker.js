@@ -58,7 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const gateSuccessContainer = document.getElementById('gateSuccessContainer');
   const gateErrorMsg = document.getElementById('gateErrorMsg');
   const unlockedDomainName = document.getElementById('unlockedDomainName');
-
   const GAUGE_CIRC = 527.8;
   const RING_CIRC = 157.1;
   const STATUS_META = {
@@ -528,8 +527,14 @@ document.addEventListener('DOMContentLoaded', () => {
         renderGroups(data.groups);
         renderUpsells(data.upsells);
 
-        // Reset interactive controls to defaults for the new report
-        if (report) report.classList.remove('mode-tech', 'hide-pass');
+        // Reset interactive controls to defaults for the new report; full analysis locked behind email gate
+        if (report) {
+          report.classList.add('gated');
+          report.classList.remove('mode-tech', 'hide-pass', 'unlocked');
+        }
+        if (gateFormWrap) gateFormWrap.style.display = '';
+        if (gateSuccessContainer) gateSuccessContainer.style.display = 'none';
+        if (gateErrorMsg) gateErrorMsg.style.display = 'none';
         if (showPass) showPass.checked = true;
         if (modePlain && modeTech) {
           modePlain.classList.add('active');
@@ -563,15 +568,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (!email || !consented) {
         if (gateErrorMsg) {
-          gateErrorMsg.textContent = 'Please enter a valid email and tick the consent checkbox.';
+          gateErrorMsg.textContent = 'Please enter a valid email and tick the consent checkbox to unlock your report.';
           gateErrorMsg.style.display = 'block';
         }
         return;
       }
 
-      if (unlockedDomainName) unlockedDomainName.textContent = currentTargetDomain || 'your business';
+      if (unlockedDomainName) unlockedDomainName.textContent = currentTargetDomain || 'your site';
+
+      // Release the wall: reveal the full analysis, swap the card to the confirmation panel
+      if (report) {
+        report.classList.remove('gated');
+        report.classList.add('unlocked');
+      }
       if (gateFormWrap) gateFormWrap.style.display = 'none';
       if (gateSuccessContainer) gateSuccessContainer.style.display = 'block';
+
+      const deepDive = document.querySelector('.report .deepdive');
+      if (deepDive && !reduceMotion) {
+        setTimeout(() => deepDive.scrollIntoView({ behavior: 'smooth', block: 'start' }), 150);
+      }
     });
   }
 });
