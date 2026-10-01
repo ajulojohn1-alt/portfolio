@@ -1,11 +1,11 @@
 # Ajulo Web Solutions
 
-> We build fast, mobile-first websites and quote systems for UK trades.
+> We build fast, mobile-first websites and quote systems for UK trades. Specialists in GEO (Generative Engine Optimisation) so local customers find trades on Google, Maps and AI assistants like ChatGPT and Perplexity.
 
 ## Core Pages
 - Services & Pricing: https://ajulowebsolutions.com/#packages
 - Case Study (Joel Removals): https://ajulowebsolutions.com/#proof
-- Website Checker: https://ajulowebsolutions.com/checker.html
+- Free 85-Point SEO & GEO Audit: https://ajulowebsolutions.com/geo-seo-checker/
 - Contact: https://ajulowebsolutions.com/#contact
 
 ## Trade Answers (Guides)
@@ -15,3 +15,7 @@
 - How to get more quote requests: https://ajulowebsolutions.com/answers/how-to-get-more-quote-requests-for-a-removals-business.html
 - Why is my site not getting enquiries?: https://ajulowebsolutions.com/answers/why-is-my-trade-website-not-getting-enquiries.html
 - How to optimise Google Business Profile: https://ajulowebsolutions.com/answers/google-business-profile-for-trades.html
+
+## Profiles
+- Instagram: https://www.instagram.com/ajulo_web_solutions/
+- X (Twitter): https://x.com/ajulosolutions

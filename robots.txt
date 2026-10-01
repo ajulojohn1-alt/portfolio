@@ -1,7 +1,9 @@
+# Crawlers: everyone may crawl everything except the API endpoints.
 User-agent: *
 Allow: /
 Disallow: /api/
 
+# AI search & assistant crawlers explicitly welcomed (same rules as above).
 User-agent: OAI-SearchBot
 Allow: /
 Disallow: /api/
@@ -19,11 +21,15 @@ Allow: /
 Disallow: /api/
 
 User-agent: GPTBot
-Disallow: /
+Allow: /
+Disallow: /api/
 
 User-agent: ClaudeBot
-Disallow: /
-
-User-agent: *
 Allow: /
+Disallow: /api/
+
+User-agent: Googlebot
+Allow: /
+Disallow: /api/
+
 Sitemap: https://ajulowebsolutions.com/sitemap.xml
