@@ -558,8 +558,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ---------------- Email gate ---------------- */
+  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xjykjojn';
+  const submitGateBtn = document.getElementById('submitGateBtn');
+
   if (leadGateForm) {
-    leadGateForm.addEventListener('submit', (e) => {
+    leadGateForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       if (gateErrorMsg) gateErrorMsg.style.display = 'none';
 
@@ -569,6 +572,39 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!email || !consented) {
         if (gateErrorMsg) {
           gateErrorMsg.textContent = 'Please enter a valid email and tick the consent checkbox to unlock your report.';
+          gateErrorMsg.style.display = 'block';
+        }
+        return;
+      }
+
+      if (submitGateBtn) {
+        submitGateBtn.disabled = true;
+        submitGateBtn.textContent = 'Unlocking…';
+      }
+
+      try {
+        const payload = new FormData();
+        payload.append('email', email);
+        payload.append('consent', 'yes — marketing emails agreed');
+        payload.append('audited_site', currentTargetDomain || 'unknown');
+        payload.append('trade', tradeCategorySelect ? tradeCategorySelect.value : '');
+        payload.append('score', lastData ? String(lastData.score) : '');
+        payload.append('source', 'SEO & GEO checker report unlock');
+        payload.append('_gotcha', '');
+
+        const res = await fetch(FORMSPREE_ENDPOINT, {
+          method: 'POST',
+          body: payload,
+          headers: { Accept: 'application/json' }
+        });
+        if (!res.ok) throw new Error(`Formspree returned HTTP ${res.status}`);
+      } catch (err) {
+        if (submitGateBtn) {
+          submitGateBtn.disabled = false;
+          submitGateBtn.textContent = 'Unlock full report';
+        }
+        if (gateErrorMsg) {
+          gateErrorMsg.textContent = 'Submission failed — please try again.';
           gateErrorMsg.style.display = 'block';
         }
         return;
