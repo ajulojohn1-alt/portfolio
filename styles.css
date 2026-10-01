@@ -817,6 +817,33 @@ footer {
   color: var(--gold);
 }
 
+.footer-social {
+  display: flex;
+  gap: 1.1rem;
+  margin-top: 1.1rem;
+}
+
+.footer-social a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+
+.footer-social a:hover {
+  color: var(--gold);
+}
+
+.footer-social svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+  flex: none;
+}
+
 .footer-bottom {
   margin-top: 2rem;
   padding-top: 1.25rem;
