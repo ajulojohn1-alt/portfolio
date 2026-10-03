@@ -121,7 +121,11 @@ export async function onRequestPost(context) {
 
     const priorities = buildPriorities(groups);
     const exec = buildExecOverview(priorities, groups, counts);
-    const psi = buildSimulatedPsi(page);
+    const simulatedPsi = buildSimulatedPsi(page);
+    const realPsi = await fetchRealPsi(finalUrl, context.env);
+    const psi = realPsi
+      ? { ...simulatedPsi, ...realPsi, estWeightKB: simulatedPsi.estWeightKB, blocking: simulatedPsi.blocking, thirdParties: simulatedPsi.thirdParties, images: simulatedPsi.images, fallbackScore: simulatedPsi.score }
+      : simulatedPsi;
     const upsells = buildUpsellRoutes(groups, psi);
 
     return json({
@@ -1353,6 +1357,61 @@ function buildExecOverview(priorities, groups, counts) {
     healthPct: pct,
     items
   };
+}
+
+// Real PageSpeed Insights run (mobile). Falls back to null on any failure —
+// the caller then uses buildSimulatedPsi so the report always has numbers.
+async function fetchRealPsi(url, env) {
+  const key = env?.PAGESPEED_API_KEY || env?.PAGESPEED_INSIGHTS_API_KEY;
+  if (!key) return null;
+
+  const endpoint = new URL('https://www.googleapis.com/pagespeedonline/v5/runPagespeed');
+  endpoint.searchParams.set('url', url);
+  endpoint.searchParams.set('strategy', 'mobile');
+  endpoint.searchParams.set('category', 'performance');
+  endpoint.searchParams.set('key', key);
+
+  try {
+    const res = await fetch(endpoint, { headers: { 'User-Agent': UA }, signal: AbortSignal.timeout(50000) });
+    if (!res.ok) return null;
+    const data = await res.json();
+    const audits = data?.lighthouseResult?.audits;
+    if (!audits) return null;
+
+    const pick = name => audits[name]?.numericValue;
+    const fcpMs = pick('first-contentful-paint');
+    const lcpMs = pick('largest-contentful-paint');
+    const tbtMs = pick('total-blocking-time');
+    const clsRaw = pick('cumulative-layout-shift');
+    if (fcpMs == null || lcpMs == null || tbtMs == null || clsRaw == null) return null;
+
+    const fcp = round1(fcpMs / 1000);
+    const lcp = round1(lcpMs / 1000);
+    const tbt = Math.round(tbtMs);
+    const cls = Math.round(clsRaw * 100) / 100;
+
+    const band = (v, good, poor) => v <= good ? 'good' : v <= poor ? 'needs-work' : 'poor';
+
+    const perfScore = data?.lighthouseResult?.categories?.performance?.score;
+
+    return {
+      source: 'psi',
+      simulated: false,
+      strategy: 'mobile',
+      fcp: { value: fcp, unit: 's', band: band(fcp, 1.8, 3.0) },
+      lcp: { value: lcp, unit: 's', band: band(lcp, 2.5, 4.0) },
+      tbt: { value: tbt, unit: 'ms', band: band(tbt, 200, 600) },
+      cls: { value: cls, unit: '', band: band(cls, 0.1, 0.25) },
+      score: perfScore != null ? Math.round(perfScore * 100) : null,
+      estWeightKB: null,
+      blocking: null,
+      thirdParties: null,
+      images: null,
+      runUrl: `https://pagespeed.web.dev/report?url=${encodeURIComponent(url)}`
+    };
+  } catch (err) {
+    return null;
+  }
 }
 
 function buildSimulatedPsi(page) {

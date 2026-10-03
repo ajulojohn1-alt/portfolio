@@ -42,6 +42,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const psiGrid = document.getElementById('psiGrid');
   const psiWeight = document.getElementById('psiWeight');
+  const psiPill = document.getElementById('psiPill');
+  const psiNote = document.getElementById('psiNote');
 
   const deepSub = document.getElementById('deepSub');
   const groupsWrap = document.getElementById('groupsWrap');
@@ -267,6 +269,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!psiGrid) return;
     psiGrid.innerHTML = '';
 
+    const live = psi.source === 'psi';
+    if (psiPill) psiPill.textContent = live ? 'Google PageSpeed Insights · mobile' : 'PageSpeed-style lab estimate';
+    if (psiNote) psiNote.textContent = live
+      ? `Measured live by Google's PageSpeed Insights API (mobile emulation, Lighthouse run). See the full report at pagespeed.web.dev.`
+      : `Simulated lab data derived from your page's HTML, response headers and resource hints — directionally accurate, but not a Lighthouse run. Book a health check for measured field data on real devices.`;
+
     const metrics = [
       { key: 'fcp', code: 'FCP', full: 'First Contentful Paint — how long before anything appears' },
       { key: 'lcp', code: 'LCP', full: 'Largest Contentful Paint — how long before the main content shows' },
@@ -303,7 +311,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     if (psiWeight) {
-      psiWeight.textContent = `~${psi.estWeightKB.toLocaleString('en-GB')} KB estimated weight · ${psi.blocking.scripts} blocking script${psi.blocking.scripts === 1 ? '' : 's'}`;
+      psiWeight.textContent = live
+        ? `${psi.images} images · ${psi.thirdParties} third-party domains on the page`
+        : `~${psi.estWeightKB.toLocaleString('en-GB')} KB estimated weight · ${psi.blocking.scripts} blocking script${psi.blocking.scripts === 1 ? '' : 's'}`;
     }
   }
 
