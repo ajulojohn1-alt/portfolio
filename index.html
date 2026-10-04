@@ -871,7 +871,7 @@
 <script>document.querySelectorAll('[data-plan]').forEach(function(b){b.addEventListener('click',function(){var s=document.getElementById('interest');if(s)s.value=b.getAttribute('data-plan')})})</script>
 <script>
 /* folio marquee: duplicate content once for a seamless loop */
-(function(){var m=document.getElementById('folioMarquee');if(!m)return;m.innerHTML+=m.innerHTML;})();
+(function(){var m=document.getElementById('folioMarquee');if(!m)return;Array.prototype.slice.call(m.children).forEach(function(n){m.appendChild(n.cloneNode(true))});})();
 /* niche chips set the hidden audience field */
 document.querySelectorAll('[data-audience]').forEach(function(b){b.addEventListener('click',function(){var f=document.getElementById('audienceField');if(f)f.value=b.getAttribute('data-audience')})});
 </script>
