@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://ajulowebsolutions.com/demos/interiors/">
+<title>Odile Interiors | Interior Design Studio, Bath</title>
+<meta name="description" content="Odile Interiors designs calm, characterful homes across Bath, Bristol and the Cotswolds — full renovations, room designs and styling days.">
+<style>
+:root{--ink:#211a14;--ivory:#f6f1e8;--terra:#b45a3c;--terra-dk:#8f4127;--olive:#6b6b3f;--sand:#e5d9c6;--line:#ddd2c0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font:17px/1.7 'Hoefler Text',Georgia,'Times New Roman',serif;color:var(--ink);background:var(--ivory)}
+h1,h2,h3{font-weight:600;line-height:1.12;letter-spacing:.01em}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+header{position:sticky;top:0;background:rgba(246,241,232,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);z-index:50}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;max-width:1120px;margin:0 auto}
+.logo{font-size:1.4rem;letter-spacing:.28em;text-transform:uppercase;color:var(--terra-dk);text-decoration:none}
+nav a{color:var(--ink);text-decoration:none;margin-left:24px;font-size:.88rem;letter-spacing:.08em;text-transform:uppercase}
+nav a:hover{color:var(--terra)}
+.btn{display:inline-block;background:var(--terra);color:#fff;text-decoration:none;padding:13px 30px;font-size:.88rem;letter-spacing:.14em;text-transform:uppercase;transition:background .2s}
+.btn:hover{background:var(--terra-dk)}
+.btn.ghost{background:none;color:var(--terra-dk);border:1px solid var(--terra)}
+.hero{padding:90px 0 70px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.kicker{font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;color:var(--olive);margin-bottom:18px}
+h1{font-size:clamp(2.3rem,5vw,3.8rem)}
+h1 em{font-style:italic;color:var(--terra)}
+.hero p{margin:22px 0 30px;color:#5c5245;font-size:1.06rem;max-width:480px}
+.mosaic{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:12px;height:440px}
+.mosaic div{border-radius:4px}
+.m1{background:linear-gradient(150deg,#c8a68a,#8f6a4e);grid-row:span 2}
+.m2{background:linear-gradient(150deg,#e0d3b8,#c5b48e)}
+.m3{background:linear-gradient(150deg,#9b8f6e,#6b6b3f)}
+.strip{background:var(--ink);color:#d8cdbd;padding:22px 0}
+.strip ul{list-style:none;display:flex;justify-content:space-around;flex-wrap:wrap;gap:14px}
+.strip li{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase}
+section{padding:80px 0}
+.shead{max-width:620px;margin:0 auto 50px;text-align:center}
+.shead h2{font-size:clamp(1.9rem,3.6vw,2.7rem);margin-bottom:12px}
+h2 em{font-style:italic;color:var(--terra)}
+.shead p{color:#6b6152}
+.portfolio{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.proj{position:relative;border-radius:4px;overflow:hidden;aspect-ratio:3/3.6;display:flex;align-items:flex-end}
+.proj .bg{position:absolute;inset:0}
+.proj:hover .bg{transform:scale(1.04)}
+.proj .bg{transition:transform .5s}
+.p1 .bg{background:linear-gradient(180deg,rgba(0,0,0,0) 40%,rgba(33,26,20,.85)),linear-gradient(150deg,#c8a68a,#7d5a40)}
+.p2 .bg{background:linear-gradient(180deg,rgba(0,0,0,0) 40%,rgba(33,26,20,.85)),linear-gradient(150deg,#dad0bb,#a99a77)}
+.p3 .bg{background:linear-gradient(180deg,rgba(0,0,0,0) 40%,rgba(33,26,20,.85)),linear-gradient(150deg,#b3b394,#6b6b3f)}
+.proj figcaption{position:relative;color:#fff;padding:22px}
+.proj figcaption b{display:block;font-size:1.15rem;font-weight:600}
+.proj figcaption span{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:#e0cbb8}
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.svc{border:1px solid var(--line);padding:32px 26px;background:#fbf8f2}
+.svc h3{font-size:1.25rem;color:var(--terra-dk);margin-bottom:10px}
+.svc p{font-size:.95rem;color:#5c5245}
+.svc .from{margin-top:16px;font-style:italic;color:var(--olive)}
+.steps{max-width:720px;margin:0 auto;counter-reset:s}
+.steps li{list-style:none;counter-increment:s;padding:0 0 30px 66px;position:relative}
+.steps li::before{content:counter(s,upper-roman);position:absolute;left:0;top:-4px;font-size:1.5rem;font-style:italic;color:var(--terra);width:48px}
+.steps h3{font-size:1.2rem;margin-bottom:6px}
+.steps p{font-size:.95rem;color:#5c5245}
+.quote{text-align:center;max-width:760px;margin:0 auto}
+.quote blockquote{font-size:clamp(1.35rem,2.8vw,1.9rem);font-style:italic;line-height:1.5}
+.quote cite{display:block;margin-top:16px;font-style:normal;font-size:.74rem;letter-spacing:.26em;text-transform:uppercase;color:var(--terra)}
+.cta-band{background:var(--sand);text-align:center;padding:82px 24px}
+.cta-band h2{font-size:clamp(1.9rem,3.8vw,2.8rem);margin-bottom:14px}
+.cta-band p{color:#6b6152;margin-bottom:28px}
+footer{padding:42px 24px;text-align:center;font-size:.78rem;color:#93887a}
+footer a{color:inherit}
+@media(max-width:860px){.hero{grid-template-columns:1fr;padding:56px 0}.mosaic{height:340px}.portfolio,.services{grid-template-columns:1fr}nav a{display:none}}
+</style>
+</head>
+<body>
+<header><div class="nav">
+  <a class="logo" href="#">Odile</a>
+  <nav><a href="#work">Work</a><a href="#services">Services</a><a href="#process">Process</a></nav>
+  <a class="btn" href="#contact">Enquire</a>
+</div></header>
+
+<div class="wrap">
+  <div class="hero">
+    <div>
+      <p class="kicker">Interior design · Bath · Bristol · The Cotswolds</p>
+      <h1>Homes with <em>calm</em>, character and a place for everything.</h1>
+      <p>Odile Interiors designs and delivers whole-house renovations, room transformations and styling days for period and modern homes. Measured, drawn, specified and installed — you keep the keys and the vision.</p>
+      <a class="btn" href="#contact">Book a consultation</a>&nbsp;
+      <a class="btn ghost" href="#work">See the work</a>
+    </div>
+    <div class="mosaic"><div class="m1"></div><div class="m2"></div><div class="m3"></div></div>
+  </div>
+</div>
+
+<div class="strip"><ul>
+  <li>Full renovations</li>
+  <li>Room designs from £900</li>
+  <li>Trade-only sourcing</li>
+  <li>BIID registered</li>
+</ul></div>
+
+<section id="work"><div class="wrap">
+  <div class="shead"><h2>Recent <em>work</em></h2><p>Every project photographed on completion — because finished rooms are the only portfolio that matters.</p></div>
+  <div class="portfolio">
+    <figure class="proj p1"><div class="bg"></div><figcaption><b>Georgian townhouse, Bathwick</b><span>Full renovation · 2026</span></figcaption></figure>
+    <figure class="proj p2"><div class="bg"></div><figcaption><b>Cotswold stone cottage</b><span>Kitchen &amp; garden room · 2025</span></figcaption></figure>
+    <figure class="proj p3"><div class="bg"></div><figcaption><b>Redland conversion, Bristol</b><span>Two flats · 2025</span></figcaption></figure>
+  </div>
+</div></section>
+
+<section id="services" style="padding-top:0"><div class="wrap">
+  <div class="shead"><h2>Ways to <em>work together</em></h2></div>
+  <div class="services">
+    <article class="svc"><h3>Full Design Service</h3><p>Whole-house or whole-floor projects: survey, concept boards, detailed drawings, specification and installation management with our trusted trades.</p><p class="from">From £6,500 per project</p></article>
+    <article class="svc"><h3>Room Design</h3><p>One room, fully designed — concept, layout, shopping list and finish schedule — delivered in three weeks for you to implement at your pace.</p><p class="from">£900–£1,800 per room</p></article>
+    <article class="svc"><h3>Styling Days</h3><p>A one-day refresh: we rework what you own, source the missing pieces and leave the room finished. The fastest transformation we offer.</p><p class="from">£450 per day</p></article>
+  </div>
+</div></section>
+
+<section id="process" style="padding-top:0"><div class="wrap">
+  <div class="shead"><h2>How a project <em>runs</em></h2></div>
+  <ol class="steps">
+    <li><h3>Consultation</h3>Ninety minutes in your home. We listen, measure and agree a brief and budget — then quote a fixed design fee.</li>
+    <li><h3>Concept and detail</h3>Boards, layouts and a full specification you approve before anything is ordered. No surprises, no drift.</li>
+    <li><h3>Installation</h3>Our trades fit, our stylists finish, and we photograph the result for the portfolio — the standard we're accountable to.</li>
+  </ol>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <div class="quote">
+    <blockquote>"Odile took our cold, awkward sitting room and made it the room we never want to leave. The budget didn't move once."</blockquote>
+    <cite>— The Harlands, Bathwick</cite>
+  </div>
+</div></section>
+
+<section id="contact" class="cta-band">
+  <h2>Tell us about your home.</h2>
+  <p>Consultations across Bath, Bristol and the Cotswolds. We reply within one working day.</p>
+  <a class="btn" href="mailto:studio@odileinteriors.example">Enquire now</a>
+</section>
+
+<footer><p>Odile Interiors is a concept demonstration created by <a href="https://ajulowebsolutions.com">Ajulo Web Solutions</a>. Names and projects are fictional.</p></footer>
+</body>
+</html>

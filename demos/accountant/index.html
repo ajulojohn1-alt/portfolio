@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://ajulowebsolutions.com/demos/accountant/">
+<title>Ledgerline Accounting | Manchester Accountants for Small Business</title>
+<meta name="description" content="Fixed-fee accounting for Manchester small businesses: bookkeeping, VAT, payroll, self assessment and Making Tax Digital. Fee quoted up front, always.">
+<style>
+:root{--ink:#132429;--teal:#0f7d78;--teal-dk:#0a5653;--mint:#e7f3f1;--paper:#f7faf9;--line:#d8e6e3;--amber:#e8a13c}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font:16.5px/1.7 'Avenir Next','Segoe UI',Verdana,sans-serif;color:var(--ink);background:var(--paper)}
+h1,h2,h3{font-family:'Avenir Next','Segoe UI',sans-serif;font-weight:700;line-height:1.2;letter-spacing:-.01em}
+.wrap{max-width:1060px;margin:0 auto;padding:0 24px}
+header{position:sticky;top:0;background:rgba(247,250,249,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);z-index:50}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:15px 24px;max-width:1060px;margin:0 auto}
+.logo{font-weight:700;font-size:1.2rem;color:var(--teal-dk);text-decoration:none}
+.logo span{color:var(--amber)}
+nav a{color:var(--ink);text-decoration:none;margin-left:22px;font-size:.9rem}
+nav a:hover{color:var(--teal)}
+.btn{display:inline-block;background:var(--teal);color:#fff;text-decoration:none;padding:12px 26px;border-radius:8px;font-weight:600;font-size:.92rem;transition:background .2s}
+.btn:hover{background:var(--teal-dk)}
+.btn.ghost{background:none;color:var(--teal-dk);border:1.5px solid var(--teal)}
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center;padding:76px 0 64px}
+.kicker{font-size:.74rem;letter-spacing:.3em;text-transform:uppercase;color:var(--teal);font-weight:700;margin-bottom:16px}
+h1{font-size:clamp(2rem,4.6vw,3.2rem)}
+.hero .lede{margin:20px 0 30px;color:#48605c;font-size:1.05rem}
+.card-num{background:var(--teal-dk);color:#fff;border-radius:16px;padding:34px 30px;position:relative;overflow:hidden}
+.card-num h3{color:#a8ded9;font-size:.8rem;letter-spacing:.24em;text-transform:uppercase;margin-bottom:18px}
+.card-num .big{font-size:2.6rem;font-weight:700;font-family:'Avenir Next',sans-serif}
+.card-num p{color:#cfe8e5;font-size:.92rem;margin-top:14px}
+.card-num .bars{display:flex;align-items:flex-end;gap:8px;height:90px;margin-top:22px}
+.card-num .bars i{flex:1;background:linear-gradient(180deg,#3aa79f,#0f7d78);border-radius:3px 3px 0 0}
+.strip{background:var(--ink);color:#dcebe8;padding:24px 0}
+.strip ul{list-style:none;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.strip li{font-size:.82rem;letter-spacing:.14em;text-transform:uppercase}
+.strip b{color:var(--amber);letter-spacing:0}
+section{padding:74px 0}
+.shead{max-width:640px;margin:0 auto 46px;text-align:center}
+.shead h2{font-size:clamp(1.7rem,3.2vw,2.4rem);margin-bottom:12px}
+.shead p{color:#52706b}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.svc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:28px 24px}
+.svc .ic{width:44px;height:44px;border-radius:10px;background:var(--mint);color:var(--teal-dk);display:grid;place-items:center;font-weight:700;font-size:1.1rem;margin-bottom:14px}
+.svc h3{font-size:1.1rem;margin-bottom:8px}
+.svc p{font-size:.92rem;color:#52706b}
+.fees{background:var(--mint);border-radius:22px;padding:58px 40px}
+.fees h2{text-align:center;margin-bottom:8px}
+.fees>.wrap>p{text-align:center;color:#52706b;margin-bottom:36px}
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.tier{background:#fff;border-radius:14px;padding:26px 24px;border:2px solid transparent}
+.tier.hot{border-color:var(--teal);position:relative}
+.tier.hot::before{content:"Most chosen";position:absolute;top:-12px;left:20px;background:var(--amber);color:var(--ink);font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border-radius:20px}
+.tier h3{color:var(--teal-dk);font-size:1.05rem}
+.tier .amt{font-size:1.9rem;font-weight:700;margin:8px 0 4px}
+.tier .amt small{font-size:.85rem;color:#6b8580;font-weight:400}
+.tier ul{list-style:none;margin-top:12px}
+.tier li{font-size:.88rem;color:#52706b;padding:5px 0 5px 22px;position:relative}
+.tier li::before{content:"✓";position:absolute;left:0;color:var(--teal);font-weight:700}
+.quote{max-width:720px;margin:0 auto;text-align:center}
+.quote blockquote{font-size:clamp(1.2rem,2.4vw,1.55rem);font-weight:500;line-height:1.5}
+.quote cite{display:block;margin-top:14px;font-style:normal;font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;color:var(--teal);font-weight:700}
+.cta-band{background:var(--teal-dk);color:#fff;text-align:center;padding:76px 24px}
+.cta-band h2{font-size:clamp(1.8rem,3.6vw,2.6rem);margin-bottom:12px}
+.cta-band p{color:#cfe8e5;margin-bottom:28px}
+.cta-band .btn{background:#fff;color:var(--teal-dk)}
+footer{padding:40px 24px;text-align:center;font-size:.78rem;color:#7d938f}
+footer a{color:inherit}
+@media(max-width:860px){.hero,.grid3,.tiers{grid-template-columns:1fr}.card-num{order:-1}nav a{display:none}}
+</style>
+</head>
+<body>
+<header><div class="nav">
+  <a class="logo" href="#">Ledger<span>line</span></a>
+  <nav><a href="#services">Services</a><a href="#fees">Fixed fees</a><a href="#contact">Contact</a></nav>
+  <a class="btn" href="#contact">Get a fixed quote</a>
+</div></header>
+
+<div class="wrap">
+  <div class="hero">
+    <div>
+      <p class="kicker">Accountants · Manchester &amp; remote UK-wide</p>
+      <h1>Your books, done. Your tax, minimised. Your fee, fixed.</h1>
+      <p class="lede">Ledgerline handles bookkeeping, VAT, payroll and self assessment for Manchester's small businesses — for one fee agreed in January, not a surprise invoice in December.</p>
+      <a class="btn" href="#contact">Get a fixed quote</a>&nbsp;
+      <a class="btn ghost" href="#fees">See what's included</a>
+    </div>
+    <div class="card-num">
+      <h3>Client tax saved last year</h3>
+      <div class="big">£412,000</div>
+      <p>Legitimately claimed allowances and reliefs across our client base — averaged, audited and attributable.</p>
+      <div class="bars"><i style="height:35%"></i><i style="height:55%"></i><i style="height:42%"></i><i style="height:70%"></i><i style="height:58%"></i><i style="height:88%"></i><i style="height:100%"></i></div>
+    </div>
+  </div>
+</div>
+
+<div class="strip"><div class="wrap"><ul>
+  <li><b>Fixed fees</b>quoted in advance</li>
+  <li><b>MTD ready</b>quarterly filings handled</li>
+  <li><b>48-hour</b>turnaround on queries</li>
+  <li><b>Xero &amp; FreeAgent</b>certified</li>
+</ul></div></div>
+
+<section id="services"><div class="wrap">
+  <div class="shead"><h2>Everything a small business needs, nothing it doesn't</h2><p>One team handling the whole ledger — no being passed between departments.</p></div>
+  <div class="grid3">
+    <article class="svc"><div class="ic">€</div><h3>Bookkeeping &amp; VAT</h3><p>Weekly processing, MTD-compliant quarterly returns and a VAT health check before every submission.</p></article>
+    <article class="svc"><div class="ic">P</div><h3>Payroll &amp; Pensions</h3><p>Payroll for teams of 1–50, auto-enrolment handled, payslips and P60s issued digitally on time, every time.</p></article>
+    <article class="svc"><div class="ic">%</div><h3>Tax &amp; Self Assessment</h3><p>Personal and corporation tax returns, dividend planning and a year-end tax review — before the year ends, not after.</p></article>
+  </div>
+</div></section>
+
+<section id="fees" style="padding-top:0"><div class="wrap">
+  <div class="fees">
+    <h2>Fixed fees, published</h2>
+    <p>Most accountants hide the fee until the invoice. Ours are on the website, and they don't change mid-year.</p>
+    <div class="tiers">
+      <div class="tier"><h3>Sole Trader</h3><div class="amt">£49<small>/mo</small></div>
+        <ul><li>Self assessment return</li><li>Bookkeeping app &amp; support</li><li>Year-end tax review</li><li>Unlimited email queries</li></ul></div>
+      <div class="tier hot"><h3>Limited Company</h3><div class="amt">£129<small>/mo</small></div>
+        <ul><li>Annual accounts &amp; CT600</li><li>Payroll for up to 5 staff</li><li>Quarterly VAT returns</li><li>Named accountant, direct line</li></ul></div>
+      <div class="tier"><h3>Growth</h3><div class="amt">£249<small>/mo</small></div>
+        <ul><li>Everything in Limited Company</li><li>Monthly management accounts</li><li>R&amp;D and capital allowance reviews</li><li>Quarterly planning meeting</li></ul></div>
+    </div>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <div class="quote">
+    <blockquote>"Our old accountant charged by the email. Ledgerline's fee has not moved in three years — and they flagged £9k of allowances our last firm missed."</blockquote>
+    <cite>— Sana K., e-commerce limited company, Didsbury</cite>
+  </div>
+</div></section>
+
+<section id="contact" class="cta-band">
+  <h2>Find out what your fee would be.</h2>
+  <p>A 20-minute call about your business, then a fixed quote in writing. No obligation, no hard sell.</p>
+  <a class="btn" href="tel:01617960000">Call 0161 796 0000</a>
+</section>
+
+<footer><p>Ledgerline Accounting is a concept demonstration created by <a href="https://ajulowebsolutions.com">Ajulo Web Solutions</a>. Names, figures and numbers are fictional.</p></footer>
+</body>
+</html>

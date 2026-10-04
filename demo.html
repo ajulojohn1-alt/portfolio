@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Live Website Demos — The Folio | Ajulo</title>
+<meta name="description" content="Browse live concept websites by Ajulo — a salon, a solicitor, an accountant, an interior designer and a real removals firm. Desktop or mobile view.">
+<link rel="canonical" href="https://ajulowebsolutions.com/demo">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#0a0a0b">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_GB">
+<meta property="og:site_name" content="Ajulo Web Solutions">
+<meta property="og:title" content="Live Website Demos — The Folio | Ajulo">
+<meta property="og:description" content="Live concept websites by Ajulo — view full size, desktop or mobile.">
+<meta property="og:url" content="https://ajulowebsolutions.com/demo">
+<meta property="og:image" content="https://ajulowebsolutions.com/img/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="48x48" href="img/ajulo-mark.png">
+<link rel="icon" type="image/png" sizes="32x32" href="img/ajulo-mark.png">
+<link rel="apple-touch-icon" href="img/ajulo-mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://ajulowebsolutions.com/demo#webpage","url":"https://ajulowebsolutions.com/demo","name":"The Folio: Live Website Demos for Every Field | Ajulo Web Solutions","isPartOf":{"@id":"https://ajulowebsolutions.com/#website"},"about":{"@id":"https://ajulowebsolutions.com/#business"},"inLanguage":"en-GB"},{"@type":"BreadcrumbList","@id":"https://ajulowebsolutions.com/demo#crumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://ajulowebsolutions.com/"},{"@type":"ListItem","position":2,"name":"The Folio","item":"https://ajulowebsolutions.com/demo"}]}]}
+</script>
+<style>
+/* ---- Folio page (serif display + niche accents) ---- */
+body{--serif:"Fraunces",Georgia,serif}
+.demo-hero{padding:72px 0 40px;text-align:center}
+.demo-hero .kicker{color:var(--gold)}
+.demo-hero h1{font:600 clamp(2.1rem,4.5vw,3.4rem)/1.12 var(--serif);letter-spacing:-.01em;margin-bottom:16px}
+.demo-hero h1 em{font-style:italic;color:var(--gold)}
+.demo-hero p{color:var(--muted);max-width:620px;margin:0 auto}
+
+/* niche accent variables per card */
+.folio-stage{position:relative;max-width:980px;margin:56px auto 24px;perspective:1400px;height:420px}
+.folio-card{position:absolute;left:50%;top:0;width:340px;height:400px;margin-left:-170px;border-radius:14px;overflow:hidden;cursor:pointer;
+  border:1px solid rgba(255,255,255,.14);background:var(--card,#16161a);
+  transition:transform .65s cubic-bezier(.22,.9,.3,1),opacity .65s,box-shadow .65s;
+  box-shadow:0 24px 60px rgba(0,0,0,.5)}
+.folio-card img{width:100%;height:82%;object-fit:cover;object-position:top;display:block;pointer-events:none}
+.folio-card .fc-label{height:18%;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:2px;background:var(--card,#16161a)}
+.folio-card .fc-label b{font:600 1.02rem var(--serif);color:var(--fc,#fff)}
+.folio-card .fc-label span{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+.folio-card.active{z-index:10;transform:translateX(0) translateZ(60px) rotateY(0);opacity:1;box-shadow:0 34px 80px rgba(0,0,0,.65),0 0 0 2px var(--fc,transparent)}
+.folio-card.l1{transform:translateX(-58%) translateZ(-140px) rotateY(24deg);opacity:.85}
+.folio-card.l2{transform:translateX(-104%) translateZ(-320px) rotateY(38deg);opacity:.5}
+.folio-card.r1{transform:translateX(58%) translateZ(-140px) rotateY(-24deg);opacity:.85}
+.folio-card.r2{transform:translateX(104%) translateZ(-320px) rotateY(-38deg);opacity:.5}
+.folio-card.hidden-side{transform:translateX(140%) translateZ(-500px) rotateY(45deg);opacity:0;pointer-events:none}
+.folio-hint{text-align:center;color:var(--muted);font-size:.85rem;margin-bottom:8px}
+.folio-dots{display:flex;justify-content:center;gap:10px;margin:18px 0 0}
+.folio-dots button{width:11px;height:11px;border-radius:50%;border:none;cursor:pointer;background:#3a3a40;transition:background .25s,transform .25s;padding:0}
+.folio-dots button[aria-current="true"]{background:var(--fc);transform:scale(1.25)}
+
+/* viewer */
+.viewer{max-width:1080px;margin:48px auto 0;padding:0 24px}
+.viewer-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;margin-bottom:18px}
+.viewer-head h2{font:600 1.5rem var(--serif);color:var(--white)}
+.viewer-head h2 span{color:var(--fc)}
+.device-toggle{display:inline-flex;border:1px solid rgba(255,255,255,.2);border-radius:999px;overflow:hidden}
+.device-toggle button{background:none;border:none;color:var(--muted);padding:9px 22px;cursor:pointer;font:600 .82rem var(--font-body,inherit);letter-spacing:.04em}
+.device-toggle button[aria-pressed="true"]{background:var(--fc);color:#0d0d0f}
+.viewer-frame{background:#101013;border:1px solid rgba(255,255,255,.12);border-radius:16px;overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,.5)}
+.viewer-bar{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.1)}
+.viewer-bar .dot{width:11px;height:11px;border-radius:50%}
+.viewer-bar .dot.r{background:#ff5f57}.viewer-bar .dot.y{background:#febc2e}.viewer-bar .dot.g{background:#28c840}
+.viewer-bar .url{margin-left:10px;flex:1;background:#0a0a0c;border-radius:8px;color:var(--muted);font-size:.8rem;padding:7px 14px;text-align:center}
+.viewer-stage{position:relative;height:min(72vh,720px);display:flex;justify-content:center;align-items:center;overflow:hidden}
+.viewer-stage iframe{width:100%;height:100%;border:0;background:#fff}
+.viewer-stage.phone .viewer-iframe-shell{width:390px;height:100%;max-height:760px;border-radius:34px;border:10px solid #232328;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.6)}
+.viewer-stage.phone iframe{width:390px}
+.viewer-note{text-align:center;color:var(--muted);font-size:.8rem;margin:14px 0 0}
+.viewer-cta{text-align:center;margin:34px 0 72px}
+@media(max-width:760px){
+  .folio-stage{height:340px}
+  .folio-card{width:250px;height:300px;margin-left:-125px}
+  .folio-card.l2,.folio-card.r2{opacity:0;pointer-events:none}
+  .viewer-stage{height:66vh}
+}
+</style>
+</head>
+<body id="top">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<nav class="site-nav" aria-label="Main">
+  <div class="container nav-inner">
+    <a class="logo" href="/" aria-label="Ajulo Web Solutions, home"><img src="img/ajulo-web-solutions.png" alt="Ajulo Web Solutions" class="logo-img" width="400" height="70"></a>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="nav-menu">Menu</button>
+    <div class="nav-links" id="nav-menu">
+      <a href="/" aria-current="page">Home</a>
+      <a href="/trades">UK Trades</a>
+      <a href="/#packages">Packages</a>
+      <a href="/geo-seo-checker/">GEO &amp; SEO Checker</a>
+      <a href="/#guides">Guides</a>
+      <a href="/#faq">FAQ</a>
+      <a class="btn btn-primary nav-cta" href="/#contact">Book your health check</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+  <section class="demo-hero">
+    <div class="container">
+      <p class="kicker">The folio</p>
+      <h1>Don't take our word for it. <em>Click around</em> our work.</h1>
+      <p>Four concept sites for four different fields, plus one live client. Every demo is a real, working page — scroll it, tap it, view it on a phone. This is the standard every Ajulo build is held to.</p>
+    </div>
+  </section>
+
+  <div class="folio-stage" id="folioStage" aria-label="Demo selector"></div>
+  <p class="folio-hint">Click a page to bring it forward, or use the dots</p>
+  <div class="folio-dots" id="folioDots" role="tablist" aria-label="Choose a demo"></div>
+
+  <div class="viewer">
+    <div class="viewer-head">
+      <h2 id="viewerTitle">The Bramble Room <span>· Hair &amp; beauty</span></h2>
+      <div class="device-toggle" role="group" aria-label="Choose device view">
+        <button type="button" id="btnDesktop" aria-pressed="true">Desktop</button>
+        <button type="button" id="btnMobile" aria-pressed="false">Mobile</button>
+      </div>
+    </div>
+    <div class="viewer-frame">
+      <div class="viewer-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><div class="url" id="viewerUrl">/demos/salon/</div></div>
+      <div class="viewer-stage" id="viewerStage">
+        <div class="viewer-iframe-shell" style="width:100%;height:100%">
+          <iframe id="viewerFrame" title="Live demo website preview" src="demos/salon/" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+    <p class="viewer-note" id="viewerNote">Concept site — the business, reviews and numbers are fictional. Your build is real, bespoke and yours.</p>
+    <div class="viewer-cta"><a class="btn btn-primary" href="/#contact" id="viewerCta">Book your health check</a></div>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="img/ajulo-web-solutions.png" alt="Ajulo Web Solutions" class="footer-logo" width="400" height="70" loading="lazy">
+        <p>UK web studio building revenue-generating websites and automation for service businesses.</p>
+        <div class="venture-line"><img src="img/ajulo-umbrella.png" alt="AJULO" class="venture-mark" width="100" height="100" loading="lazy"> Ajulo Web Solutions is an AJULO venture.</div>
+      </div>
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="/trades">UK Trades</a>
+        <a href="/#packages">Packages</a>
+        <a href="/geo-seo-checker/">GEO &amp; SEO Checker</a>
+        <a href="/#guides">Guides</a>
+        <a href="/#faq">FAQ</a>
+        <a href="/#contact">Contact</a>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:john@ajulowebsolutions.com">john@ajulowebsolutions.com</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms</a>
+        <a href="cookies.html">Cookie Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© <span id="year"></span> Ajulo Web Solutions. All rights reserved. Templates and code remain the property of Ajulo Web Solutions.</div>
+      <div>UK-focused. Serving UK businesses remotely.</div>
+    </div>
+  </div>
+</footer>
+
+<div class="cookie-bar" id="cookieBar" hidden>
+  <p>We use essential cookies and Microsoft Clarity for site analytics. <a href="cookies.html">Cookie Policy</a></p>
+  <div class="cookie-actions">
+    <button class="btn btn-primary btn-small" data-cookie-choice="yes">Accept</button>
+    <button class="btn btn-secondary btn-small" data-cookie-choice="essential">Essential only</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var demos=[
+    {key:"salon",label:"The Bramble Room",field:"Hair &amp; beauty",url:"demos/salon/",img:"img/demo-salon-desktop.png",accent:"#c2547a",card:"#2a1720"},
+    {key:"solicitor",label:"Hartwell &amp; Co",field:"Solicitors",url:"demos/solicitor/",img:"img/demo-solicitor-desktop.png",accent:"#b08d4f",card:"#0e2238"},
+    {key:"accountant",label:"Ledgerline",field:"Accountants",url:"demos/accountant/",img:"img/demo-accountant-desktop.png",accent:"#2ea89f",card:"#132429"},
+    {key:"interiors",label:"Odile Interiors",field:"Interior design",url:"demos/interiors/",img:"img/demo-interiors-desktop.png",accent:"#c97b5a",card:"#211a14"},
+    {key:"joel",label:"Joel Removals",field:"Live client · removals",url:"https://joelremovals.co.uk",img:"img/demo-interiors-desktop.png",accent:"#e8853c",card:"#1c130b",live:true}
+  ];
+  // Joel card thumbnail: use the mobile proof screenshot (real site)
+  demos[4].img="img/jr-mobile.png";
+
+  var stage=document.getElementById("folioStage"),dots=document.getElementById("folioDots");
+  var frame=document.getElementById("viewerFrame"),stageEl=document.getElementById("viewerStage");
+  var title=document.getElementById("viewerTitle"),urlBar=document.getElementById("viewerUrl"),note=document.getElementById("viewerNote");
+  var btnD=document.getElementById("btnDesktop"),btnM=document.getElementById("btnMobile");
+  var active=0;
+
+  demos.forEach(function(d,i){
+    var c=document.createElement("article");
+    c.className="folio-card";c.tabIndex=0;c.setAttribute("role","button");
+    c.style.setProperty("--fc",d.accent);c.style.setProperty("--card",d.card);
+    c.innerHTML='<img src="'+d.img+'" alt="Screenshot of the '+d.label.replace("&amp;","&")+' website" loading="lazy"><div class="fc-label"><b>'+d.label+'</b><span>'+d.field+'</span></div>';
+    function pick(){select(i)}
+    c.addEventListener("click",pick);
+    c.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();pick()}});
+    stage.appendChild(c);
+    var b=document.createElement("button");
+    b.type="button";b.setAttribute("aria-label","Show "+d.label.replace("&amp;","&"));
+    b.style.setProperty("--fc",d.accent);
+    b.addEventListener("click",pick);
+    dots.appendChild(b);
+  });
+  var cards=[].slice.call(stage.children),dotBtns=[].slice.call(dots.children);
+
+  function layout(){
+    var n=demos.length,half=(n-1)/2;
+    cards.forEach(function(c,i){
+      var off=i-active;
+      c.className="folio-card "+(off===0?"active":off===-1?"l1":off===1?"r1":off===-2?"l2":off===2?"r2":"hidden-side");
+      c.setAttribute("aria-hidden",off!==0);
+      dotBtns[i].setAttribute("aria-current",off===0?"true":"false");
+    });
+  }
+  function select(i){
+    active=i;var d=demos[i];
+    layout();
+    title.innerHTML=d.label+" <span>· "+d.field+"</span>";
+    urlBar.textContent=d.url;
+    note.textContent=d.live
+      ?"A real client site, shown live. Every Ajulo build is held to this standard."
+      :"Concept site — the business, reviews and numbers are fictional. Your build is real, bespoke and yours.";
+    if(frame.getAttribute("src")!==d.url)frame.setAttribute("src",d.url);
+  }
+  btnD.addEventListener("click",function(){setDevice(false)});
+  btnM.addEventListener("click",function(){setDevice(true)});
+  function setDevice(phone){
+    btnD.setAttribute("aria-pressed",!phone);btnM.setAttribute("aria-pressed",phone);
+    stageEl.classList.toggle("phone",phone);
+  }
+
+  // auto-advance until the visitor interacts
+  var auto=setInterval(function(){select((active+1)%demos.length)},3800);
+  function stopAuto(){if(auto){clearInterval(auto);auto=null}}
+  stage.addEventListener("pointerdown",stopAuto);
+  dots.addEventListener("pointerdown",stopAuto);
+
+  select(0);
+})();
+</script>
+<script src="script.js"></script>
+</body>
+</html>
