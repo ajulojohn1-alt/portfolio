@@ -62,15 +62,17 @@ body{--serif:"Fraunces",Georgia,serif}
 .viewer-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;margin-bottom:18px}
 .viewer-head h2{font:600 1.5rem var(--serif);color:var(--white)}
 .viewer-head h2 span{color:var(--fc)}
-.device-toggle{display:inline-flex;border:1px solid rgba(255,255,255,.2);border-radius:999px;overflow:hidden}
-.device-toggle button{background:none;border:none;color:var(--muted);padding:9px 22px;cursor:pointer;font:600 .82rem var(--font-body,inherit);letter-spacing:.04em}
-.device-toggle button[aria-pressed="true"]{background:var(--fc);color:#0d0d0f}
+.device-toggle{display:inline-flex;border:1px solid rgba(255,255,255,.25);border-radius:999px;overflow:hidden;background:rgba(255,255,255,.05)}
+.device-toggle button{background:none;border:none;color:#fff;padding:10px 26px;cursor:pointer;font:600 .95rem var(--font-body,inherit);letter-spacing:.03em;opacity:.85}
+.device-toggle button:hover{opacity:1;background:rgba(255,255,255,.08)}
+.device-toggle button[aria-pressed="true"]{background:var(--fc);color:#0d0d0f;opacity:1}
 .viewer-frame{background:#101013;border:1px solid rgba(255,255,255,.12);border-radius:16px;overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,.5)}
 .viewer-bar{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.1)}
 .viewer-bar .dot{width:11px;height:11px;border-radius:50%}
 .viewer-bar .dot.r{background:#ff5f57}.viewer-bar .dot.y{background:#febc2e}.viewer-bar .dot.g{background:#28c840}
 .viewer-bar .url{margin-left:10px;flex:1;background:#0a0a0c;border-radius:8px;color:var(--muted);font-size:.8rem;padding:7px 14px;text-align:center}
 .viewer-stage{position:relative;height:min(72vh,720px);display:flex;justify-content:center;align-items:center;overflow:hidden}
+.viewer-stage .viewer-iframe-shell{width:100%;height:100%}
 .viewer-stage iframe{width:100%;height:100%;border:0;background:#fff}
 .viewer-stage.phone .viewer-iframe-shell{width:390px;height:100%;max-height:760px;border-radius:34px;border:10px solid #232328;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.6)}
 .viewer-stage.phone iframe{width:390px}
@@ -91,8 +93,9 @@ body{--serif:"Fraunces",Georgia,serif}
     <a class="logo" href="/" aria-label="Ajulo Web Solutions, home"><img src="img/ajulo-web-solutions.png" alt="Ajulo Web Solutions" class="logo-img" width="400" height="70"></a>
     <button class="menu-toggle" aria-expanded="false" aria-controls="nav-menu">Menu</button>
     <div class="nav-links" id="nav-menu">
-      <a href="/" aria-current="page">Home</a>
+      <a href="/">Home</a>
       <a href="/trades">UK Trades</a>
+      <a href="/demo" aria-current="page">Demos</a>
       <a href="/#packages">Packages</a>
       <a href="/geo-seo-checker/">GEO &amp; SEO Checker</a>
       <a href="/#guides">Guides</a>
@@ -127,7 +130,7 @@ body{--serif:"Fraunces",Georgia,serif}
     <div class="viewer-frame">
       <div class="viewer-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><div class="url" id="viewerUrl">/demos/salon/</div></div>
       <div class="viewer-stage" id="viewerStage">
-        <div class="viewer-iframe-shell" style="width:100%;height:100%">
+        <div class="viewer-iframe-shell">
           <iframe id="viewerFrame" title="Live demo website preview" src="demos/salon/" loading="lazy"></iframe>
         </div>
       </div>
@@ -183,10 +186,8 @@ body{--serif:"Fraunces",Georgia,serif}
     {key:"solicitor",label:"Hartwell &amp; Co",field:"Solicitors",url:"demos/solicitor/",img:"img/solicitor-desktop.png",accent:"#b08d4f",card:"#0e2238"},
     {key:"accountant",label:"Ledgerline",field:"Accountants",url:"demos/accountant/",img:"img/accountant-desktop.png",accent:"#2ea89f",card:"#132429"},
     {key:"interiors",label:"Odile Interiors",field:"Interior design",url:"demos/interiors/",img:"img/interiors-desktop.png",accent:"#c97b5a",card:"#211a14"},
-    {key:"joel",label:"Joel Removals",field:"Live client · removals",url:"https://joelremovals.co.uk",img:"img/demo-interiors-desktop.png",accent:"#e8853c",card:"#1c130b",live:true}
+    {key:"joel",label:"Joel Removals",field:"Live client · removals",url:"https://joelremovals.co.uk",img:"img/jr-desktop.png",accent:"#e8853c",card:"#1c130b",live:true}
   ];
-  // Joel card thumbnail: use the mobile proof screenshot (real site)
-  demos[4].img="img/jr-mobile.png";
 
   var chipsWrap=document.getElementById("folioChips");
   var frame=document.getElementById("viewerFrame"),stageEl=document.getElementById("viewerStage");
