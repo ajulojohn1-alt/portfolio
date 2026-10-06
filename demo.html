@@ -37,29 +37,28 @@ body{--serif:"Fraunces",Georgia,serif}
 .demo-hero h1 em{font-style:italic;color:var(--gold)}
 .demo-hero p{color:var(--muted);max-width:620px;margin:0 auto}
 
-/* niche accent variables per card */
-.folio-stage{position:relative;max-width:980px;margin:56px auto 24px;perspective:1400px;height:420px}
-.folio-card{position:absolute;left:50%;top:0;width:340px;height:400px;margin-left:-170px;border-radius:14px;overflow:hidden;cursor:pointer;
-  border:1px solid rgba(255,255,255,.14);background:var(--card,#16161a);
-  transition:transform .65s cubic-bezier(.22,.9,.3,1),opacity .65s,box-shadow .65s;
-  box-shadow:0 24px 60px rgba(0,0,0,.5)}
-.folio-card img{width:100%;height:82%;object-fit:cover;object-position:top;display:block;pointer-events:none}
-.folio-card .fc-label{height:18%;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:2px;background:var(--card,#16161a)}
-.folio-card .fc-label b{font:600 1.02rem var(--serif);color:var(--fc,#fff)}
-.folio-card .fc-label span{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
-.folio-card.active{z-index:10;transform:translateX(0) translateZ(60px) rotateY(0);opacity:1;box-shadow:0 34px 80px rgba(0,0,0,.65),0 0 0 2px var(--fc,transparent)}
-.folio-card.l1{transform:translateX(-58%) translateZ(-140px) rotateY(24deg);opacity:.85}
-.folio-card.l2{transform:translateX(-104%) translateZ(-320px) rotateY(38deg);opacity:.5}
-.folio-card.r1{transform:translateX(58%) translateZ(-140px) rotateY(-24deg);opacity:.85}
-.folio-card.r2{transform:translateX(104%) translateZ(-320px) rotateY(-38deg);opacity:.5}
-.folio-card.hidden-side{transform:translateX(140%) translateZ(-500px) rotateY(45deg);opacity:0;pointer-events:none}
-.folio-hint{text-align:center;color:var(--muted);font-size:.85rem;margin-bottom:8px}
-.folio-dots{display:flex;justify-content:center;gap:10px;margin:18px 0 0}
-.folio-dots button{width:11px;height:11px;border-radius:50%;border:none;cursor:pointer;background:#3a3a40;transition:background .25s,transform .25s;padding:0}
-.folio-dots button[aria-current="true"]{background:var(--fc);transform:scale(1.25)}
+/* selector chips */
+.folio-picker{max-width:min(1600px,calc(100% - 2.5rem));margin:44px auto 0;padding:0 24px}
+.folio-hint{text-align:center;color:var(--muted);font-size:.95rem;margin-bottom:18px}
+.folio-hint b{color:var(--white)}
+.folio-chips{display:flex;justify-content:center;flex-wrap:wrap;gap:12px}
+.folio-chip{display:flex;flex-direction:column;width:196px;border-radius:12px;overflow:hidden;cursor:pointer;padding:0;text-align:left;
+  border:1px solid rgba(255,255,255,.14);background:var(--card,#16161a);color:inherit;
+  transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+.folio-chip:hover{transform:translateY(-3px)}
+.folio-chip img{width:100%;height:110px;object-fit:cover;object-position:top;display:block}
+.folio-chip .fc-label{padding:10px 12px;display:flex;flex-direction:column;gap:2px}
+.folio-chip .fc-label b{font:600 .95rem var(--serif);color:var(--white)}
+.folio-chip .fc-label span{font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.folio-chip[aria-selected="true"]{border-color:var(--fc);box-shadow:0 0 0 2px var(--fc),0 18px 40px rgba(0,0,0,.5)}
+.folio-chip[aria-selected="true"] .fc-label b{color:var(--fc)}
+@media(max-width:760px){
+  .folio-chips{justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;padding-bottom:8px;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity}
+  .folio-chip{flex:0 0 auto;scroll-snap-align:center}
+}
 
 /* viewer */
-.viewer{max-width:1080px;margin:48px auto 0;padding:0 24px}
+.viewer{max-width:min(1600px,calc(100% - 2.5rem));margin:48px auto 0;padding:0 24px}
 .viewer-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;margin-bottom:18px}
 .viewer-head h2{font:600 1.5rem var(--serif);color:var(--white)}
 .viewer-head h2 span{color:var(--fc)}
@@ -78,10 +77,9 @@ body{--serif:"Fraunces",Georgia,serif}
 .viewer-note{text-align:center;color:var(--muted);font-size:.8rem;margin:14px 0 0}
 .viewer-cta{text-align:center;margin:34px 0 72px}
 @media(max-width:760px){
-  .folio-stage{height:340px}
-  .folio-card{width:250px;height:300px;margin-left:-125px}
-  .folio-card.l2,.folio-card.r2{opacity:0;pointer-events:none}
   .viewer-stage{height:66vh}
+  .viewer{padding:0 12px}
+  .folio-picker{padding:0 12px}
 }
 </style>
 </head>
@@ -89,7 +87,7 @@ body{--serif:"Fraunces",Georgia,serif}
 <a class="skip-link" href="#main">Skip to content</a>
 
 <nav class="site-nav" aria-label="Main">
-  <div class="container nav-inner">
+  <div class="nav-inner">
     <a class="logo" href="/" aria-label="Ajulo Web Solutions, home"><img src="img/ajulo-web-solutions.png" alt="Ajulo Web Solutions" class="logo-img" width="400" height="70"></a>
     <button class="menu-toggle" aria-expanded="false" aria-controls="nav-menu">Menu</button>
     <div class="nav-links" id="nav-menu">
@@ -113,9 +111,10 @@ body{--serif:"Fraunces",Georgia,serif}
     </div>
   </section>
 
-  <div class="folio-stage" id="folioStage" aria-label="Demo selector"></div>
-  <p class="folio-hint">Click a page to bring it forward, or use the dots</p>
-  <div class="folio-dots" id="folioDots" role="tablist" aria-label="Choose a demo"></div>
+  <div class="folio-picker">
+    <p class="folio-hint">Pick a business below to preview its website in the viewer — then switch between <b>Desktop</b> and <b>Mobile</b> to see how it adapts.</p>
+    <div class="folio-chips" id="folioChips" role="tablist" aria-label="Choose a demo"></div>
+  </div>
 
   <div class="viewer">
     <div class="viewer-head">
@@ -180,50 +179,34 @@ body{--serif:"Fraunces",Georgia,serif}
 <script>
 (function(){
   var demos=[
-    {key:"salon",label:"The Bramble Room",field:"Hair &amp; beauty",url:"demos/salon/",img:"img/demo-salon-desktop.png",accent:"#c2547a",card:"#2a1720"},
-    {key:"solicitor",label:"Hartwell &amp; Co",field:"Solicitors",url:"demos/solicitor/",img:"img/demo-solicitor-desktop.png",accent:"#b08d4f",card:"#0e2238"},
-    {key:"accountant",label:"Ledgerline",field:"Accountants",url:"demos/accountant/",img:"img/demo-accountant-desktop.png",accent:"#2ea89f",card:"#132429"},
-    {key:"interiors",label:"Odile Interiors",field:"Interior design",url:"demos/interiors/",img:"img/demo-interiors-desktop.png",accent:"#c97b5a",card:"#211a14"},
+    {key:"salon",label:"The Bramble Room",field:"Hair &amp; beauty",url:"demos/salon/",img:"img/salon-desktop.png",accent:"#c2547a",card:"#2a1720"},
+    {key:"solicitor",label:"Hartwell &amp; Co",field:"Solicitors",url:"demos/solicitor/",img:"img/solicitor-desktop.png",accent:"#b08d4f",card:"#0e2238"},
+    {key:"accountant",label:"Ledgerline",field:"Accountants",url:"demos/accountant/",img:"img/accountant-desktop.png",accent:"#2ea89f",card:"#132429"},
+    {key:"interiors",label:"Odile Interiors",field:"Interior design",url:"demos/interiors/",img:"img/interiors-desktop.png",accent:"#c97b5a",card:"#211a14"},
     {key:"joel",label:"Joel Removals",field:"Live client · removals",url:"https://joelremovals.co.uk",img:"img/demo-interiors-desktop.png",accent:"#e8853c",card:"#1c130b",live:true}
   ];
   // Joel card thumbnail: use the mobile proof screenshot (real site)
   demos[4].img="img/jr-mobile.png";
 
-  var stage=document.getElementById("folioStage"),dots=document.getElementById("folioDots");
+  var chipsWrap=document.getElementById("folioChips");
   var frame=document.getElementById("viewerFrame"),stageEl=document.getElementById("viewerStage");
   var title=document.getElementById("viewerTitle"),urlBar=document.getElementById("viewerUrl"),note=document.getElementById("viewerNote");
   var btnD=document.getElementById("btnDesktop"),btnM=document.getElementById("btnMobile");
-  var active=0;
+  var chips=[];
 
   demos.forEach(function(d,i){
-    var c=document.createElement("article");
-    c.className="folio-card";c.tabIndex=0;c.setAttribute("role","button");
-    c.style.setProperty("--fc",d.accent);c.style.setProperty("--card",d.card);
-    c.innerHTML='<img src="'+d.img+'" alt="Screenshot of the '+d.label.replace("&amp;","&")+' website" loading="lazy"><div class="fc-label"><b>'+d.label+'</b><span>'+d.field+'</span></div>';
-    function pick(){select(i)}
-    c.addEventListener("click",pick);
-    c.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();pick()}});
-    stage.appendChild(c);
     var b=document.createElement("button");
-    b.type="button";b.setAttribute("aria-label","Show "+d.label.replace("&amp;","&"));
-    b.style.setProperty("--fc",d.accent);
-    b.addEventListener("click",pick);
-    dots.appendChild(b);
+    b.type="button";b.className="folio-chip";b.setAttribute("role","tab");
+    b.style.setProperty("--fc",d.accent);b.style.setProperty("--card",d.card);
+    b.innerHTML='<img src="'+d.img+'" alt="Screenshot of the '+d.label.replace("&amp;","&")+' website" loading="lazy"><div class="fc-label"><b>'+d.label+'</b><span>'+d.field+'</span></div>';
+    b.addEventListener("click",function(){select(i)});
+    chipsWrap.appendChild(b);
+    chips.push(b);
   });
-  var cards=[].slice.call(stage.children),dotBtns=[].slice.call(dots.children);
 
-  function layout(){
-    var n=demos.length,half=(n-1)/2;
-    cards.forEach(function(c,i){
-      var off=i-active;
-      c.className="folio-card "+(off===0?"active":off===-1?"l1":off===1?"r1":off===-2?"l2":off===2?"r2":"hidden-side");
-      c.setAttribute("aria-hidden",off!==0);
-      dotBtns[i].setAttribute("aria-current",off===0?"true":"false");
-    });
-  }
   function select(i){
-    active=i;var d=demos[i];
-    layout();
+    var d=demos[i];
+    chips.forEach(function(c,j){c.setAttribute("aria-selected",j===i?"true":"false")});
     title.innerHTML=d.label+" <span>· "+d.field+"</span>";
     urlBar.textContent=d.url;
     note.textContent=d.live
@@ -237,12 +220,6 @@ body{--serif:"Fraunces",Georgia,serif}
     btnD.setAttribute("aria-pressed",!phone);btnM.setAttribute("aria-pressed",phone);
     stageEl.classList.toggle("phone",phone);
   }
-
-  // auto-advance until the visitor interacts
-  var auto=setInterval(function(){select((active+1)%demos.length)},3800);
-  function stopAuto(){if(auto){clearInterval(auto);auto=null}}
-  stage.addEventListener("pointerdown",stopAuto);
-  dots.addEventListener("pointerdown",stopAuto);
 
   select(0);
 })();

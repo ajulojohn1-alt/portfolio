@@ -217,6 +217,8 @@ p {
 }
 
 .nav-inner {
+  width: min(1440px, calc(100% - 2.5rem));
+  margin-inline: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
