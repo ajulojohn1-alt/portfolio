@@ -821,42 +821,10 @@ footer {
   color: var(--gold);
 }
 
-.footer-verified {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-top: 16px;
-}
 
-.footer-verified img {
-  display: block;
-  height: 40px;
-  width: auto;
-  border-radius: 8px;
-  opacity: 0.85;
-  transition: opacity 0.2s ease;
-}
 
-.footer-verified img:hover {
-  opacity: 1;
-}
 
-.footer-verified a.verified-pill {
-  font-size: 0.8rem;
-  color: var(--muted);
-  text-decoration: none;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 10px 14px;
-  white-space: nowrap;
-  transition: color 0.2s ease, border-color 0.2s ease;
-}
 
-.footer-verified a.verified-pill:hover {
-  color: var(--gold);
-  border-color: var(--gold);
-}
 
 .footer-social {
   display: flex;
