@@ -821,6 +821,25 @@ footer {
   color: var(--gold);
 }
 
+.footer-verified {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+.footer-verified img {
+  display: block;
+  height: 44px;
+  width: auto;
+}
+
+.footer-verified a {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
 .footer-social {
   display: flex;
   gap: 1.1rem;
