@@ -600,30 +600,114 @@ p {
 }
 
 /* Addons */
-.addons-grid {
+/* Automation bento grid */
+.bento-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2.5rem 3rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
 }
 
-.addon-card {
-  border-top: 2px solid var(--line);
-  padding-top: 1.1rem;
+.bento-card {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 1.6rem 1.5rem 1.5rem;
+  background:
+    radial-gradient(120% 90% at 85% 0%, color-mix(in srgb, var(--bc, var(--accent)) 14%, transparent), transparent 55%),
+    #121214;
+  overflow: hidden;
+  transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
-.addon-card h3 {
+.bento-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: var(--bc, var(--accent));
+}
+
+.bento-card:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--bc, var(--accent)) 55%, var(--line));
+}
+
+.bento-card h3 {
   color: var(--white);
+  font-size: 1.15rem;
 }
 
-.addon-card .price-line {
-  color: var(--gold);
-  font-weight: 600;
+.bento-card .price-line {
+  color: var(--white);
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin: 0.35rem 0 0.6rem;
+}
+
+.bento-card .price-line em {
+  font-style: normal;
+  font-weight: 500;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.bento-card p:not(.price-line) {
   font-size: 0.92rem;
-  margin: 0.25rem 0 0.6rem;
+  margin: 0;
 }
 
-.addon-card p strong {
+.bento-card p strong {
   color: var(--white);
+}
+
+.bento-lead {
+  grid-row: span 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.bento-lead h3 {
+  font-size: 1.45rem;
+}
+
+.bento-tag {
+  align-self: flex-start;
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #0d0d0f;
+  background: var(--bc, var(--accent));
+  border-radius: 20px;
+  padding: 4px 10px;
+  margin-bottom: 0.9rem;
+}
+
+.bento-wide {
+  grid-column: span 2;
+}
+
+@media (max-width: 1000px) {
+  .bento-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .bento-lead {
+    grid-row: auto;
+    grid-column: span 2;
+  }
+  .bento-wide {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 760px) {
+  .bento-grid {
+    grid-template-columns: 1fr;
+  }
+  .bento-lead,
+  .bento-wide {
+    grid-column: auto;
+  }
 }
 
 .auto-foot {
@@ -1465,7 +1549,7 @@ footer {
     padding-top: 3.5rem;
   }
 
-  .addons-grid,
+  .bento-grid,
   .results,
   .form-grid,
   .callouts,
