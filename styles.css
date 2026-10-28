@@ -853,6 +853,44 @@ footer {
   flex: none;
 }
 
+/* Media Queries */
+@media (max-width: 1000px) {
+  .hero-grid,
+  .contact-grid,
+  .pricing-grid,
+  .steps,
+  .devices,
+  .stat-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pricing-grid {
+    max-width: 560px;
+  }
+
+  .trust ul,
+  .results,
+  .callouts,
+  .niches {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .case-screen {
+    height: 480px;
+  }
+
+  .phone-col {
+    max-width: 290px;
+    margin: 0 auto;
+  }
+
+  .stat-rows li {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+}
+
+/* Footer */
 .footer-bottom {
   margin-top: 2rem;
   padding-top: 1.25rem;
